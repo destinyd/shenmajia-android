@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/write_bill_menu"
+          android:title="@string/write_bill"
+          android:alphabeticShortcut="S "/>
+    <item android:id="@+id/write_cost_menu"
+          android:title="@string/write_cost"
+          android:alphabeticShortcut="S"/>
+    <item android:id="@+id/logout_menu"
+          android:title="@string/logout"
+          android:alphabeticShortcut="H"/>
+    <item android:id="@+id/exit" android:title="@string/exit"></item>
+</menu>

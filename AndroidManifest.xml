@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="dd.android.shenmajia.billshow"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="8" />
+
+    <uses-feature android:name="android.hardware.location.gps" />
+
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" >
+    </uses-permission>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="dd.android.shenmajia.billshow.LoginActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="dd.android.shenmajia.billshow.RegActivity"
+            android:label="@string/title_activity_reg" >
+        </activity>
+        <activity
+            android:name="dd.android.shenmajia.billshow.DashboardActivity"
+            android:label="@string/title_activity_dashboard" >
+        </activity>
+        <activity
+            android:name="dd.android.shenmajia.billshow.BillsActivity"
+            android:label="@string/title_activity_bills" >
+        </activity>
+        <activity
+            android:name="dd.android.shenmajia.billshow.BillFormActivity"
+            android:label="@string/title_activity_bill_form" >
+        </activity>
+        <activity
+            android:name="dd.android.shenmajia.billshow.PlacesActivity"
+            android:label="@string/title_activity_places" >
+        </activity>
+        <activity
+            android:name="dd.android.shenmajia.billshow.CostFormActivity"
+            android:label="@string/title_activity_cost_form" >
+        </activity>
+        <activity
+            android:name="dd.android.shenmajia.billshow.LauncherActivity"
+            android:label="@string/title_activity_launcher" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="dd.android.shenmajia.billshow.CostsActivity"
+            android:label="@string/title_activity_costs" >
+        </activity>
+
+        <uses-library
+            android:name="com.google.android.maps"
+            android:required="true" />
+
+        <activity
+            android:name="dd.android.shenmajia.billshow.PlaceSelectActivity"
+            android:label="@string/title_activity_map" >
+        </activity>
+    </application>
+
+</manifest>
