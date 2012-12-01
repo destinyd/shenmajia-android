@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -16,6 +20,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Criteria;
@@ -23,6 +28,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.telephony.TelephonyManager;
 import android.telephony.gsm.GsmCellLocation;
 import android.util.Log;
@@ -39,13 +45,21 @@ import dd.android.shenmajia.common.WiFiInfoManager;
 import dd.android.shenmajia.common.WiFiInfoManager.WifiInfo;
 
 public class DashboardActivity extends Activity {
+
+	static DashboardActivity _factory = null;
 	
-	static DashboardActivity _factory = null;  
-	public static DashboardActivity factory(){
-		if(_factory == null)
+	ProgressDialog dialog = null;
+
+	//Thread
+	private ExecutorService service = Executors.newSingleThreadExecutor();
+	private Handler mainHandler = new Handler() ;
+	//Thread
+//	
+	public static DashboardActivity factory() {
+		if (_factory == null)
 			_factory = new DashboardActivity();
-//		else
-//			_factory.init();
+		// else
+		// _factory.init();
 		return _factory;
 	}
 
@@ -53,24 +67,40 @@ public class DashboardActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dashboard);
+
+		_factory = this;
+		init_location();
 		init();
+		dialog = ShenmajiaApi.loading(DashboardActivity.this);
 	}
 
 	public void init() {
-		JSONObject json = ShenmajiaApi.get_dashboard();
-		init_text_view(json);
-		init_location();
-		_factory = this;
+		service.submit(new Runnable() {
+
+			@Override
+			public void run() {
+
+				final JSONObject json = ShenmajiaApi.get_dashboard();
+
+//				String result = ShenmajiaApi.get_near_places(page);
+				mainHandler.post(new Runnable() {
+					@Override
+					public void run() {// 这将在主线程运行
+						init_text_view(json);
+						dialog.dismiss();
+					}
+				});
+			}
+		});
 	}
 
 	public void init_text_view(JSONObject json) {
 		TextView tv_username = (TextView) findViewById(R.id.tv_username);
-		tv_username.setText(Settings.username);
-
 		TextView tv_bills_count = (TextView) findViewById(R.id.tv_bills_count);
-		tv_bills_count.setText(json.getString("bills_count"));
-
 		TextView tv_costs_sum = (TextView) findViewById(R.id.tv_costs_sum);
+		
+		tv_username.setText(Settings.username);
+		tv_bills_count.setText(json.getString("bills_count"));
 		tv_costs_sum.setText(json.getString("costs_sum"));
 	}
 
@@ -155,8 +185,8 @@ public class DashboardActivity extends Activity {
 		Location location = locationManager.getLastKnownLocation(provider);
 		// if (location != null) {
 		updateWithNewLocation(location);
-		// 设置监听器，自动更新的最小时间为间隔1秒，最小位移变化超过5米
-		locationManager.requestLocationUpdates(provider, 60000, 100,
+		// 设置监听器，自动更新的最小时间为间隔30分钟，最小位移变化超过100米
+		locationManager.requestLocationUpdates(provider, 300000, 100,
 				locationListener);
 		// } else {
 		// getLocation();
@@ -190,7 +220,7 @@ public class DashboardActivity extends Activity {
 			latLongString = "维度:" + Settings.lat + "\n经度:" + Settings.lng;
 		} else {
 			latLongString = "无法获取地理信息";
-//			getLocation();
+			// getLocation();
 		}
 		myLocationText.setText(latLongString);
 	}
@@ -369,51 +399,51 @@ public class DashboardActivity extends Activity {
 			return null;
 		}
 	}
-	
-//    public String getAddressbyGeoPoint(GeoPoint gp)
-//    {
-//      String strReturn = "";
-//      try
-//      {
-//        /* 创建GeoPoint不等于null */
-//        if (gp != null)
-//        {
-//          /* 创建Geocoder对象，用于获得指定地点的地址 */
-//          Geocoder gc = new Geocoder(Map_index.this, Locale.getDefault());
-//          
-//          /* 取出地理坐标经纬度*/
-//          double geoLatitude = (int)gp.getLatitudeE6()/1E6;
-//          double geoLongitude = (int)gp.getLongitudeE6()/1E6;
-//          
-//          /* 自经纬度取得地址（可能有多行）*/
-//          List<Address> lstAddress = gc.getFromLocation(geoLatitude, geoLongitude, 1);
-//          StringBuilder sb = new StringBuilder();
-//          
-//          /* 判断地址是否为多行 */
-//          if (lstAddress.size() > 0)
-//          {
-//            Address adsLocation = lstAddress.get(0);
-//
-//            for (int i = 0; i < adsLocation.getMaxAddressLineIndex(); i++)
-//            {
-//              sb.append(adsLocation.getAddressLine(i)).append("\n");
-//            }
-//            sb.append(adsLocation.getLocality()).append("\n");
-//            sb.append(adsLocation.getPostalCode()).append("\n");
-//            sb.append(adsLocation.getCountryName());
-//          }
-//          
-//          /* 将取得到的地址组合后放到stringbuilder对象中输出用 */
-//          strReturn = sb.toString();
-//        }
-//      }
-//      catch(Exception e)
-//      {
-//        e.printStackTrace();
-//      }
-//      return strReturn;
-//    }
 
+	// public String getAddressbyGeoPoint(GeoPoint gp)
+	// {
+	// String strReturn = "";
+	// try
+	// {
+	// /* 创建GeoPoint不等于null */
+	// if (gp != null)
+	// {
+	// /* 创建Geocoder对象，用于获得指定地点的地址 */
+	// Geocoder gc = new Geocoder(Map_index.this, Locale.getDefault());
+	//
+	// /* 取出地理坐标经纬度*/
+	// double geoLatitude = (int)gp.getLatitudeE6()/1E6;
+	// double geoLongitude = (int)gp.getLongitudeE6()/1E6;
+	//
+	// /* 自经纬度取得地址（可能有多行）*/
+	// List<Address> lstAddress = gc.getFromLocation(geoLatitude, geoLongitude,
+	// 1);
+	// StringBuilder sb = new StringBuilder();
+	//
+	// /* 判断地址是否为多行 */
+	// if (lstAddress.size() > 0)
+	// {
+	// Address adsLocation = lstAddress.get(0);
+	//
+	// for (int i = 0; i < adsLocation.getMaxAddressLineIndex(); i++)
+	// {
+	// sb.append(adsLocation.getAddressLine(i)).append("\n");
+	// }
+	// sb.append(adsLocation.getLocality()).append("\n");
+	// sb.append(adsLocation.getPostalCode()).append("\n");
+	// sb.append(adsLocation.getCountryName());
+	// }
+	//
+	// /* 将取得到的地址组合后放到stringbuilder对象中输出用 */
+	// strReturn = sb.toString();
+	// }
+	// }
+	// catch(Exception e)
+	// {
+	// e.printStackTrace();
+	// }
+	// return strReturn;
+	// }
 
 	// public class CellIDInfo {
 	//

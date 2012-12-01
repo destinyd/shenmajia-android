@@ -24,33 +24,34 @@ import com.alibaba.fastjson.JSONObject;
 
 public class V1 {
 
-	
 	public static String client_id = "9434f1ecf27bf7acf618ba20acb77135cee47f897ba38121dc9bf140e57b993a";
 	public static String client_secret = "fbc028a39f5df36798e7613e9a576fed7a4dbc6b495e3a411ad6374875a84b80";
-	public static String domain_url = "http://remote.shenmajia.tk";
+	public static String domain_url = "http://192.168.1.4:3000";
 	public static String token_url = domain_url + "/oauth/token";
 	public static String me_url = domain_url
 			+ "/api/v1/me.json?access_token=%s";
 	public static String dashboard_url = domain_url
 			+ "/api/v1/dashboard.json?access_token=%s";
-	public static String bills_url = domain_url
-			+ "/api/v1/dashboard.json?access_token=%s";
 	public static String search_place_url = domain_url
 			+ "/api/v1/places/search.json?access_token=%s&q=%s&lat=%.3f&lon=%.3f&page=%d";
+	public static String search_good_url = domain_url
+			+ "/api/v1/goods/search.json?access_token=%s&q=%s&page=%d";
 	public static String reg_url = domain_url + "/api/v1/reg";
-	public static String costs_url = domain_url + "/api/v1/costs";	
-	
-	public static JSONObject reg(String email, String password, String password_confirm,
-			String username) {
+	public static String costs_url = domain_url + "/api/v1/costs";
+	public static String bills_url = domain_url + "/api/v1/bills";
+
+	public static JSONObject reg(String email, String password,
+			String password_confirm, String username) {
 		HttpPost request = new HttpPost(reg_url);
 		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
 		// params.add(new BasicNameValuePair("client_id", client_id));
 		// params.add(new BasicNameValuePair("client_secret",
 		// client_secret));
-//		params.add(new BasicNameValuePair("grant_type", grant_type));
+		// params.add(new BasicNameValuePair("grant_type", grant_type));
 		params.add(new BasicNameValuePair("user[email]", email));
 		params.add(new BasicNameValuePair("user[password]", password));
-		params.add(new BasicNameValuePair("user[password_confirmation]", password_confirm));
+		params.add(new BasicNameValuePair("user[password_confirmation]",
+				password_confirm));
 		params.add(new BasicNameValuePair("user[username]", username));
 
 		// 绑定到请求 Entry
@@ -68,9 +69,9 @@ public class V1 {
 		try {
 			httpResponse = new DefaultHttpClient().execute(request);
 			retSrc = EntityUtils.toString(httpResponse.getEntity());
-			Log.d("r reg",retSrc);
+			Log.d("r reg", retSrc);
 			result = JSONObject.parseObject(retSrc);
-//			Toast.makeText(this, retSrc, Toast.LENGTH_LONG).show();
+			// Toast.makeText(this, retSrc, Toast.LENGTH_LONG).show();
 		} catch (ClientProtocolException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -86,7 +87,7 @@ public class V1 {
 		}
 		return result;
 	}
-	
+
 	public static JSONObject me(String access_token) {
 		HttpResponse httpResponse1;
 		String retSrc = "";
@@ -107,7 +108,7 @@ public class V1 {
 		}
 		try {
 			retSrc = EntityUtils.toString(httpResponse1.getEntity());
-			Log.d("r me",retSrc);
+			Log.d("r me", retSrc);
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -123,13 +124,12 @@ public class V1 {
 		}
 		return result1;
 	}
-	
-	public static JSONObject login(String username,String password) {
+
+	public static JSONObject login(String username, String password) {
 		HttpPost request = new HttpPost(token_url);
 		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
 		params.add(new BasicNameValuePair("client_id", client_id));
-		params.add(new BasicNameValuePair("client_secret",
-				client_secret));
+		params.add(new BasicNameValuePair("client_secret", client_secret));
 		params.add(new BasicNameValuePair("grant_type", "password"));
 		params.add(new BasicNameValuePair("username", username));
 		params.add(new BasicNameValuePair("password", password));
@@ -147,7 +147,7 @@ public class V1 {
 		try {
 			httpResponse = new DefaultHttpClient().execute(request);
 			retSrc = EntityUtils.toString(httpResponse.getEntity());
-			Log.d("r login",retSrc);
+			Log.d("r login", retSrc);
 		} catch (ClientProtocolException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -171,7 +171,7 @@ public class V1 {
 		}
 		return result;
 	}
-	
+
 	public static JSONObject dashboard(String access_token) {
 		HttpResponse httpResponse1;
 		String retSrc = "";
@@ -192,7 +192,7 @@ public class V1 {
 		}
 		try {
 			retSrc = EntityUtils.toString(httpResponse1.getEntity());
-			Log.d("r dashboard",retSrc);
+			Log.d("r dashboard", retSrc);
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -207,8 +207,8 @@ public class V1 {
 			e1.printStackTrace();
 		}
 		return result;
-	}	
-	
+	}
+
 	public static JSONObject places(String access_token) {
 		HttpResponse httpResponse1;
 		String retSrc = "";
@@ -229,7 +229,7 @@ public class V1 {
 		}
 		try {
 			retSrc = EntityUtils.toString(httpResponse1.getEntity());
-			Log.d("r places",retSrc);
+			Log.d("r places", retSrc);
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -245,16 +245,18 @@ public class V1 {
 		}
 		return result;
 	}
-	
-	public static String search_place(String access_token,String q,Double lat,Double lng,Integer page) {
+
+	public static String search_place(String access_token, String q,
+			Double lat, Double lng, Integer page) {
 		HttpResponse httpResponse1;
 		String retSrc = "";
-		
-		if(lat == 0 || lng == 0)
+
+		if (lat == 0 || lng == 0)
 			return null;
 
-		String url = String.format(search_place_url, access_token,q,lat,lng,page);
-		Log.d("url",url);
+		String url = String.format(search_place_url, access_token, q, lat, lng,
+				page);
+		Log.d("url", url);
 		HttpGet request = new HttpGet(url);
 		try {
 			httpResponse1 = new DefaultHttpClient().execute(request);
@@ -276,17 +278,18 @@ public class V1 {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		Log.d("search_place",retSrc);
+		Log.d("search_place", retSrc);
 		return retSrc;
-	}	
-	
-	public static JSONObject create_cost(String access_token,Float money,String desc) {
+	}
+
+	public static JSONObject create_cost(String access_token, Float money,
+			String desc) {
 		HttpPost request = new HttpPost(costs_url);
 		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
 		// params.add(new BasicNameValuePair("client_id", client_id));
 		// params.add(new BasicNameValuePair("client_secret",
 		// client_secret));
-//		params.add(new BasicNameValuePair("grant_type", grant_type));
+		// params.add(new BasicNameValuePair("grant_type", grant_type));
 		params.add(new BasicNameValuePair("access_token", access_token));
 		params.add(new BasicNameValuePair("cost[money]", money.toString()));
 		params.add(new BasicNameValuePair("cost[desc]", URLEncoder.encode(desc)));
@@ -306,9 +309,9 @@ public class V1 {
 		try {
 			httpResponse = new DefaultHttpClient().execute(request);
 			retSrc = EntityUtils.toString(httpResponse.getEntity());
-			Log.d("r costs create",retSrc);
+			Log.d("r costs create", retSrc);
 			result = JSONObject.parseObject(retSrc);
-//			Toast.makeText(this, retSrc, Toast.LENGTH_LONG).show();
+			// Toast.makeText(this, retSrc, Toast.LENGTH_LONG).show();
 		} catch (ClientProtocolException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -323,5 +326,93 @@ public class V1 {
 			e1.printStackTrace();
 		}
 		return result;
-	}	
+	}
+	
+	static String format_bill_prices_key = "bill_prices[%d][%s]";
+	static String format_bill_prices_double = "%.2f";
+
+	public static JSONObject create_bill(String access_token, Integer place_id,
+			Double total, List<BillPrice> bill_prices) {
+		HttpPost request = new HttpPost(bills_url);
+		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
+		// params.add(new BasicNameValuePair("client_id", client_id));
+		// params.add(new BasicNameValuePair("client_secret",
+		// client_secret));
+		// params.add(new BasicNameValuePair("grant_type", grant_type));
+		params.add(new BasicNameValuePair("access_token", access_token));
+		params.add(new BasicNameValuePair("place_id", place_id.toString()));
+		params.add(new BasicNameValuePair("bill[total]", total.toString()));
+		for (BillPrice bp : bill_prices) {
+			params.add(new BasicNameValuePair(String.format(
+					format_bill_prices_key, bp.good_id, "price"), String
+					.format(format_bill_prices_double,bp.price)));			
+			params.add(new BasicNameValuePair(String.format(
+					format_bill_prices_key, bp.good_id, "amount"), String
+					.format(format_bill_prices_double,bp.amount)));			
+		}
+
+		// 绑定到请求 Entry
+		try {
+			request.setEntity(new UrlEncodedFormEntity(params));
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return null;
+		}
+		// 发送请求
+		HttpResponse httpResponse;
+		String retSrc = "";
+		JSONObject result = null;
+		try {
+			httpResponse = new DefaultHttpClient().execute(request);
+			retSrc = EntityUtils.toString(httpResponse.getEntity());
+			Log.d("r costs create", retSrc);
+			result = JSONObject.parseObject(retSrc);
+			// Toast.makeText(this, retSrc, Toast.LENGTH_LONG).show();
+		} catch (ClientProtocolException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return result;
+	}
+
+	public static String search_good(String access_token, String q, Integer page) {
+		HttpResponse httpResponse1;
+		String retSrc = "";
+
+		String url = String.format(search_good_url, access_token, q, page);
+		Log.d("url", url);
+		HttpGet request = new HttpGet(url);
+		try {
+			httpResponse1 = new DefaultHttpClient().execute(request);
+		} catch (ClientProtocolException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return null;
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return null;
+		}
+		try {
+			retSrc = EntityUtils.toString(httpResponse1.getEntity());
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Log.d("search_good", retSrc);
+		return retSrc;
+	}
 }

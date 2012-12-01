@@ -1,38 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_search_good"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PlacesActivity" >
 
     <EditText
-        android:id="@+id/et_place_name"
+        android:id="@+id/et_search_good_q"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:inputType="textPostalAddress" >
+        android:layout_toLeftOf="@+id/btn_search_good"
+        android:hint="@string/search_good_hint"
+        android:inputType="textNoSuggestions"
+        android:minWidth="100dip" >
 
         <requestFocus />
     </EditText>
 
     <Button
-        android:id="@+id/btn_place_search"
+        android:id="@+id/btn_search_good"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/et_place_name"
-        android:layout_toRightOf="@+id/et_place_name"
-        android:onClick="search_place"
-        android:text="@string/search_place" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:onClick="search_good"
+        android:text="@string/search_good" />
 
     <ListView
-        android:id="@+id/lv_places"
+        android:id="@+id/lv_goods"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/et_place_name" >
+        android:layout_below="@+id/et_search_good_q"
+        android:background="#ffffff"
+        android:drawSelectorOnTop="true" >
     </ListView>
 
 </RelativeLayout>

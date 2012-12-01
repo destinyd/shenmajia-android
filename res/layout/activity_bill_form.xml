@@ -1,16 +1,111 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".BillFormActivity" >
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:onClick="submit"
+    android:orientation="vertical"
+    tools:context="@string/bill_form" >
 
+    <RelativeLayout
+        android:id="@+id/toppanel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" >
 
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bill_form"
+            android:textSize="11pt" />
+
+        <Button
+            android:id="@+id/btn_add_bill_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:onClick="click_btn_add_bill_price"
+            android:text="@string/add_bill_price" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/panelBottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+
+        <TableLayout
+            android:id="@+id/tb_bottom"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/submit"
+            android:layout_alignParentBottom="true"
+            android:padding="3dip"
+            android:stretchColumns="1" >
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="实际金额"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="0"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="总额"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:inputType="numberDecimal"
+                    android:padding="3dip"
+                    android:text="0" >
+
+                    <requestFocus />
+                </EditText>
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="submit"
+            android:text="提交" >
+
+        </Button>
+    </LinearLayout>
 
     <ListView
-        android:id="@+id/lv_places"
+        android:id="@+id/lv_bill_prices"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true">
+        android:layout_height="match_parent"
+        android:layout_above="@id/panelBottom"
+        android:layout_below="@id/toppanel"
+        android:longClickable="true" >
+
     </ListView>
 
 </RelativeLayout>

@@ -36,7 +36,7 @@ public class CostFormActivity extends Activity {
 		}
 		Float money = Float.parseFloat(et_money.getText().toString());
 		String desc = et_desc.getText().toString();
-		if(ShenmajiaApi.create_cost(this, money, desc)){
+		if(ShenmajiaApi.create_cost(money, desc)){
 			DashboardActivity.factory().finish();
 			ShenmajiaApi.change_activity(this, DashboardActivity.class);
 		}

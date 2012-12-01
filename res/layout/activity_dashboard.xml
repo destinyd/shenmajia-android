@@ -45,7 +45,6 @@
         android:layout_alignBottom="@+id/TextView01"
         android:layout_alignLeft="@+id/tv_username"
         android:onClick="to_bills"
-        android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -76,7 +75,6 @@
         android:layout_alignBottom="@+id/TextView02"
         android:layout_alignLeft="@+id/tv_bills_count"
         android:onClick="to_costs"
-        android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -85,7 +83,6 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/TextView01"
         android:layout_centerHorizontal="true"
-        android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
