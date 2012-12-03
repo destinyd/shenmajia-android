@@ -17,7 +17,7 @@ public final class R {
         public static final int TextView01=0x7f070011;
         public static final int TextView02=0x7f070013;
         public static final int TextView03=0x7f070015;
-        public static final int bt_load=0x7f070033;
+        public static final int bt_load=0x7f070034;
         public static final int btn_add_bill_price=0x7f070001;
         public static final int btn_login=0x7f070019;
         public static final int btn_near_places=0x7f07001c;
@@ -43,26 +43,27 @@ public final class R {
         public static final int et_search_good_q=0x7f070029;
         public static final int et_total=0x7f070005;
         public static final int et_username=0x7f070022;
-        public static final int exit=0x7f070039;
+        public static final int exit=0x7f07003a;
         public static final int head=0x7f07001b;
-        public static final int logout_menu=0x7f070038;
+        public static final int logout_menu=0x7f070039;
         public static final int lv_bill_prices=0x7f070007;
         public static final int lv_goods=0x7f07002b;
         public static final int lv_places=0x7f07001f;
-        public static final int menu_settings=0x7f070035;
+        public static final int menu_settings=0x7f070036;
         public static final int panelBottom=0x7f070002;
-        public static final int pg=0x7f070034;
+        public static final int pg=0x7f070035;
+        public static final int rl_top=0x7f070031;
         public static final int submit=0x7f070006;
         public static final int tableRow2=0x7f070028;
         public static final int tb_bottom=0x7f070003;
         public static final int textView1=0x7f07000f;
         public static final int toggleButton1=0x7f070027;
         public static final int toppanel=0x7f070000;
-        public static final int tv_address=0x7f070032;
+        public static final int tv_address=0x7f070033;
         public static final int tv_bills_count=0x7f070010;
         public static final int tv_costs_sum=0x7f070014;
         public static final int tv_desc=0x7f070009;
-        public static final int tv_distance=0x7f070031;
+        public static final int tv_distance=0x7f070032;
         public static final int tv_money=0x7f070008;
         public static final int tv_name=0x7f07002c;
         public static final int tv_norm=0x7f070030;
@@ -70,8 +71,8 @@ public final class R {
         public static final int tv_total=0x7f070004;
         public static final int tv_unit=0x7f07002f;
         public static final int tv_username=0x7f070012;
-        public static final int write_bill_menu=0x7f070036;
-        public static final int write_cost_menu=0x7f070037;
+        public static final int write_bill_menu=0x7f070037;
+        public static final int write_cost_menu=0x7f070038;
     }
     public static final class layout {
         public static final int activity_bill_form=0x7f030000;
