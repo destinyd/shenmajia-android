@@ -4,35 +4,50 @@
     android:layout_height="match_parent"
     tools:context=".PlacesActivity" >
 
-    <EditText
-        android:id="@+id/et_place_name"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/head"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:inputType="textPostalAddress" >
+        android:gravity="center_vertical|center_horizontal" >
 
-        <requestFocus />
-    </EditText>
+        <Button
+            android:id="@+id/btn_near_places"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:onClick="load_near_places"
+            android:text="@string/near" />
+        
+        <Button
+            android:id="@+id/btn_place_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/btn_near_places"
+            android:onClick="search_place"
+            android:text="@string/search" />
 
-    <Button
-        android:id="@+id/btn_place_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/et_place_name"
-        android:layout_toRightOf="@+id/et_place_name"
-        android:onClick="search_place"
-        android:text="@string/search_place" />
+        <EditText
+            android:id="@+id/et_place_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/btn_place_search"
+            android:ems="10"
+            android:inputType="textPostalAddress" >
+
+            <requestFocus />
+        </EditText>
+
+        
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/lv_places"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/et_place_name" >
+        android:layout_below="@id/head" >
     </ListView>
 
 </RelativeLayout>

@@ -44,5 +44,7 @@
     <string name="barcode">条形码</string>
     <string name="origin">原产地</string>
     <string name="search_good">搜索商品</string>
+    <string name="search">搜索</string>
+    <string name="near">周边</string>
 
 </resources>

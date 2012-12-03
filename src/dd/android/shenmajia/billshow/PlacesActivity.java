@@ -50,13 +50,22 @@ public class PlacesActivity extends Activity {
 		lv_places = (ListView) findViewById(R.id.lv_places);
 
 		// near_places();
-		set_places_view_click();
-		dialog = ShenmajiaApi.loading(PlacesActivity.this,"读取周边地点...");
-		load_near_places();
 		factory = this;
+		
+		set_places_view_click();
+		load_near_places();		
+	}
+
+	public void load_near_places(View v) {
+		load_near_places();
+	}
+
+	private void load_near_places() {
+		load_near_places(1);
 	}
 
 	private void load_near_places(final int page) {
+		dialog = ShenmajiaApi.loading(PlacesActivity.this,"读取周边地点...");
 		service.submit(new Runnable() {
 
 			@Override
@@ -97,10 +106,6 @@ public class PlacesActivity extends Activity {
 		});
 	}	
 
-	private void load_near_places() {
-		load_near_places(1);
-	}
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -109,12 +114,12 @@ public class PlacesActivity extends Activity {
 	}
 
 	// String distance_m_format = "%.0f 米";
-	public void near_places() {
-		String result = ShenmajiaApi.get_near_places();
-
-		List<HashMap<String, Object>> data = search_result_to_data(result);
-		bind_places_view(data);
-	}
+//	public void near_places() {
+//		String result = ShenmajiaApi.get_near_places();
+//
+//		List<HashMap<String, Object>> data = search_result_to_data(result);
+//		bind_places_view(data);
+//	}
 
 	public void search_place(View v) {
 		EditText et = (EditText) findViewById(R.id.et_place_name);
