@@ -72,7 +72,7 @@ public class BillPriceAdapter extends BaseAdapter {
 
 		viewHolder.tv_name.setText(bill_price.name);
 		viewHolder.tv_unit.setText(bill_price.unit);
-		viewHolder.tv_norm.setText(bill_price.norm);
+		viewHolder.tv_norm.setText(bill_price.getNorm());
 		viewHolder.et_amount.setText(String.valueOf(bill_price.amount));
 		viewHolder.et_price.setText(String.valueOf(bill_price.price));
 		

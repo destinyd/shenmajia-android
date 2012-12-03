@@ -81,7 +81,7 @@ public class GoodAdapter extends BaseAdapter {
 //		viewHolder.tv_name.setText(String.valueOf(good.id));
 		viewHolder.tv_name.setText(good.name);
 		viewHolder.tv_unit.setText(good.unit);
-		viewHolder.tv_norm.setText(good.norm);
+		viewHolder.tv_norm.setText(good.getNorm());
 //		viewHolder.imageView.setImageResource(good.photo);
 		
 //		//对ListView中第1个TextView配置OnClick事件

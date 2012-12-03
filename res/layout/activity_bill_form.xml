@@ -39,8 +39,6 @@
             android:id="@+id/tb_bottom"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/submit"
-            android:layout_alignParentBottom="true"
             android:padding="3dip"
             android:stretchColumns="1" >
 

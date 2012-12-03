@@ -157,32 +157,30 @@ public class BillFormActivity extends Activity {
 	}
 
 	public void submit(View v) {
-		service.submit(new Runnable() {
+		new AlertDialog.Builder(BillFormActivity.this)
+		.setTitle("提示")
+		.setMessage("确认提交?")
+		.setPositiveButton("确认", new OnClickListener() {
 
 			@Override
-			public void run() {
-				mainHandler.post(new Runnable() {
-					@Override
-					public void run() {// 这将在主线程运行
-						Double total = Double.parseDouble(et_total.getText()
-								.toString());
-						if (ShenmajiaApi.create_bill(place_id, total,
-								bill_prices)) {
+			public void onClick(DialogInterface dialog,
+					int which) {
 
-							PlacesActivity.factory.finish();
-							mainHandler.removeCallbacks(runnable);
-							bill_prices.clear();
+				Double total = Double.parseDouble(et_total.getText()
+						.toString());
+				if (ShenmajiaApi.create_bill(place_id, total,
+						bill_prices)) {
 
-							ShenmajiaApi.change_activity(BillFormActivity.this,
-									DashboardActivity.class);
-						}
-						// for (BillPrice bill_price : bill_prices) {
-						//
-						// }
-					}
-				});
+					PlacesActivity.factory.finish();
+					mainHandler.removeCallbacks(runnable);
+					bill_prices.clear();
+
+					ShenmajiaApi.change_activity(BillFormActivity.this,
+							DashboardActivity.class);
+				}
+				dialog.dismiss();
 			}
-		});
+		}).setNegativeButton("取消", null).show();
 	}
 
 	public void search_good(View v) {
