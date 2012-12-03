@@ -1,8 +1,6 @@
-package dd.android.shenmajia.billshow;
+package dd.android.shenmajia.billshow.adapter;
 
 import java.util.List;
-
-import dd.android.shenmajia.api.BillPrice;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
+import dd.android.shenmajia.api.BillPrice;
+import dd.android.shenmajia.billshow.R;
 
 public class BillPriceAdapter extends BaseAdapter {
 	private List<BillPrice> bill_prices;
@@ -50,7 +50,7 @@ public class BillPriceAdapter extends BaseAdapter {
 		if (convertView == null) {
 			// Log.d("MyBaseAdapter", "新建convertView,position="+position);
 			convertView = LayoutInflater.from(context).inflate(
-					R.layout.bill_price_item, null);
+					R.layout.item_bill_price, null);
 
 			viewHolder = new ViewHolder();
 			viewHolder.tv_name = (TextView) convertView

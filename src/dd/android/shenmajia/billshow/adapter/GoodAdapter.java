@@ -1,8 +1,6 @@
-package dd.android.shenmajia.billshow;
+package dd.android.shenmajia.billshow.adapter;
 
 import java.util.List;
-
-import dd.android.shenmajia.api.Good;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import dd.android.shenmajia.api.Good;
+import dd.android.shenmajia.billshow.R;
 
 public class GoodAdapter extends BaseAdapter {
 	private List<Good> goods;
@@ -51,7 +51,7 @@ public class GoodAdapter extends BaseAdapter {
 		if(convertView==null){
 //			Log.d("MyBaseAdapter", "新建convertView,position="+position);
 			convertView = LayoutInflater.from(context).inflate(
-					R.layout.good_item, null);
+					R.layout.item_good, null);
 			
 			viewHolder = new ViewHolder();
 			viewHolder.tv_name = (TextView)convertView.findViewById(

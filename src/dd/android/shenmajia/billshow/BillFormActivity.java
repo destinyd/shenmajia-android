@@ -27,6 +27,8 @@ import com.alibaba.fastjson.JSON;
 
 import dd.android.shenmajia.api.BillPrice;
 import dd.android.shenmajia.api.Good;
+import dd.android.shenmajia.billshow.adapter.BillPriceAdapter;
+import dd.android.shenmajia.billshow.adapter.GoodAdapter;
 import dd.android.shenmajia.common.ShenmajiaApi;
 
 public class BillFormActivity extends Activity {
