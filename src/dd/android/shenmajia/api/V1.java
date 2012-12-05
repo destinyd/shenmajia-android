@@ -2,7 +2,6 @@ package dd.android.shenmajia.api;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +18,7 @@ import org.apache.http.util.EntityUtils;
 
 import android.util.Log;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 
@@ -26,7 +26,8 @@ public class V1 {
 
 	public static String client_id = "9434f1ecf27bf7acf618ba20acb77135cee47f897ba38121dc9bf140e57b993a";
 	public static String client_secret = "fbc028a39f5df36798e7613e9a576fed7a4dbc6b495e3a411ad6374875a84b80";
-	public static String domain_url = "http://192.168.1.4:3000";
+//	public static String domain_url = "http://192.168.1.4:3000";
+	public static String domain_url = "http://remote.shenmajia.tk";
 	public static String token_url = domain_url + "/oauth/token";
 	public static String me_url = domain_url
 			+ "/api/v1/me.json?access_token=%s";
@@ -39,6 +40,10 @@ public class V1 {
 	public static String reg_url = domain_url + "/api/v1/reg";
 	public static String costs_url = domain_url + "/api/v1/costs";
 	public static String bills_url = domain_url + "/api/v1/bills";
+	public static String goods_url = domain_url + "/api/v1/goods";
+
+	static String format_bill_prices_key = "bill_prices[%d][%s]";
+	static String format_bill_prices_double = "%.2f";
 
 	public static JSONObject reg(String email, String password,
 			String password_confirm, String username) {
@@ -56,7 +61,7 @@ public class V1 {
 
 		// 绑定到请求 Entry
 		try {
-			request.setEntity(new UrlEncodedFormEntity(params));
+			request.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
 		} catch (UnsupportedEncodingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -282,109 +287,6 @@ public class V1 {
 		return retSrc;
 	}
 
-	public static JSONObject create_cost(String access_token, Float money,
-			String desc) {
-		HttpPost request = new HttpPost(costs_url);
-		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
-		// params.add(new BasicNameValuePair("client_id", client_id));
-		// params.add(new BasicNameValuePair("client_secret",
-		// client_secret));
-		// params.add(new BasicNameValuePair("grant_type", grant_type));
-		params.add(new BasicNameValuePair("access_token", access_token));
-		params.add(new BasicNameValuePair("cost[money]", money.toString()));
-		params.add(new BasicNameValuePair("cost[desc]", URLEncoder.encode(desc)));
-
-		// 绑定到请求 Entry
-		try {
-			request.setEntity(new UrlEncodedFormEntity(params));
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			return null;
-		}
-		// 发送请求
-		HttpResponse httpResponse;
-		String retSrc = "";
-		JSONObject result = null;
-		try {
-			httpResponse = new DefaultHttpClient().execute(request);
-			retSrc = EntityUtils.toString(httpResponse.getEntity());
-			Log.d("r costs create", retSrc);
-			result = JSONObject.parseObject(retSrc);
-			// Toast.makeText(this, retSrc, Toast.LENGTH_LONG).show();
-		} catch (ClientProtocolException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (JSONException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		return result;
-	}
-	
-	static String format_bill_prices_key = "bill_prices[%d][%s]";
-	static String format_bill_prices_double = "%.2f";
-
-	public static JSONObject create_bill(String access_token, Integer place_id,
-			Double total, List<BillPrice> bill_prices) {
-		HttpPost request = new HttpPost(bills_url);
-		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
-		// params.add(new BasicNameValuePair("client_id", client_id));
-		// params.add(new BasicNameValuePair("client_secret",
-		// client_secret));
-		// params.add(new BasicNameValuePair("grant_type", grant_type));
-		params.add(new BasicNameValuePair("access_token", access_token));
-		params.add(new BasicNameValuePair("place_id", place_id.toString()));
-		params.add(new BasicNameValuePair("bill[total]", total.toString()));
-		for (BillPrice bp : bill_prices) {
-			params.add(new BasicNameValuePair(String.format(
-					format_bill_prices_key, bp.good_id, "price"), String
-					.format(format_bill_prices_double,bp.price)));			
-			params.add(new BasicNameValuePair(String.format(
-					format_bill_prices_key, bp.good_id, "amount"), String
-					.format(format_bill_prices_double,bp.amount)));			
-		}
-
-		// 绑定到请求 Entry
-		try {
-			request.setEntity(new UrlEncodedFormEntity(params));
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			return null;
-		}
-		// 发送请求
-		HttpResponse httpResponse;
-		String retSrc = "";
-		JSONObject result = null;
-		try {
-			httpResponse = new DefaultHttpClient().execute(request);
-			retSrc = EntityUtils.toString(httpResponse.getEntity());
-			Log.d("r costs create", retSrc);
-			result = JSONObject.parseObject(retSrc);
-			// Toast.makeText(this, retSrc, Toast.LENGTH_LONG).show();
-		} catch (ClientProtocolException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (JSONException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		return result;
-	}
-
 	public static String search_good(String access_token, String q, Integer page) {
 		HttpResponse httpResponse1;
 		String retSrc = "";
@@ -414,5 +316,156 @@ public class V1 {
 		}
 		Log.d("search_good", retSrc);
 		return retSrc;
+	}
+
+	public static JSONObject create_cost(String access_token, Float money,
+			String desc) {
+		HttpPost request = new HttpPost(costs_url);
+		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
+		// params.add(new BasicNameValuePair("client_id", client_id));
+		// params.add(new BasicNameValuePair("client_secret",
+		// client_secret));
+		// params.add(new BasicNameValuePair("grant_type", grant_type));
+		params.add(new BasicNameValuePair("access_token", access_token));
+		params.add(new BasicNameValuePair("cost[money]", money.toString()));
+		params.add(new BasicNameValuePair("cost[desc]", desc));
+
+		// 绑定到请求 Entry
+		try {
+			request.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return null;
+		}
+		// 发送请求
+		HttpResponse httpResponse;
+		String retSrc = "";
+		JSONObject result = null;
+		try {
+			httpResponse = new DefaultHttpClient().execute(request);
+			retSrc = EntityUtils.toString(httpResponse.getEntity());
+			Log.d("r costs create", retSrc);
+			result = JSONObject.parseObject(retSrc);
+			// Toast.makeText(this, retSrc, Toast.LENGTH_LONG).show();
+		} catch (ClientProtocolException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return result;
+	}
+
+	public static JSONObject create_bill(String access_token, Integer place_id,
+			Double total,Double cost, List<BillPrice> bill_prices) {
+		HttpPost request = new HttpPost(bills_url);
+		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
+		// params.add(new BasicNameValuePair("client_id", client_id));
+		// params.add(new BasicNameValuePair("client_secret",
+		// client_secret));
+		// params.add(new BasicNameValuePair("grant_type", grant_type));
+		params.add(new BasicNameValuePair("access_token", access_token));
+		params.add(new BasicNameValuePair("place_id", place_id.toString()));
+		params.add(new BasicNameValuePair("bill[total]", total.toString()));
+		params.add(new BasicNameValuePair("bill[cost]", cost.toString()));
+		for (BillPrice bp : bill_prices) {
+			params.add(new BasicNameValuePair(String.format(
+					format_bill_prices_key, bp.good_id, "price"), String
+					.format(format_bill_prices_double, bp.price)));
+			params.add(new BasicNameValuePair(String.format(
+					format_bill_prices_key, bp.good_id, "amount"), String
+					.format(format_bill_prices_double, bp.amount)));
+		}
+
+		// 绑定到请求 Entry
+		try {
+			request.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return null;
+		}
+		// 发送请求
+		HttpResponse httpResponse;
+		String retSrc = "";
+		JSONObject result = null;
+		try {
+			httpResponse = new DefaultHttpClient().execute(request);
+			retSrc = EntityUtils.toString(httpResponse.getEntity());
+			Log.d("r costs create", retSrc);
+			result = JSONObject.parseObject(retSrc);
+			// Toast.makeText(this, retSrc, Toast.LENGTH_LONG).show();
+		} catch (ClientProtocolException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return result;
+	}
+
+	public static Good create_good(String access_token, String name,
+			String unit, String taglist, String norm, String barcode,
+			String origin, String desc) {
+		HttpPost request = new HttpPost(goods_url);
+		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
+		// params.add(new BasicNameValuePair("client_id", client_id));
+		// params.add(new BasicNameValuePair("client_secret",
+		// client_secret));
+		// params.add(new BasicNameValuePair("grant_type", grant_type));
+		params.add(new BasicNameValuePair("access_token", access_token));
+		params.add(new BasicNameValuePair("good[name]", name));
+		params.add(new BasicNameValuePair("good[unit]", unit));
+		params.add(new BasicNameValuePair("good[tag_list]", taglist));
+		params.add(new BasicNameValuePair("good[norm]", norm));
+		params.add(new BasicNameValuePair("good[barcode]", barcode));
+		params.add(new BasicNameValuePair("good[origin]", origin));
+		params.add(new BasicNameValuePair("good[desc]", desc));
+
+		// 绑定到请求 Entry
+		try {
+			request.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return null;
+		}
+		// 发送请求
+		HttpResponse httpResponse;
+		String retSrc = "";
+		try {
+			httpResponse = new DefaultHttpClient().execute(request);
+			retSrc = EntityUtils.toString(httpResponse.getEntity());
+			Log.d("r goods create", retSrc);
+			// Toast.makeText(this, retSrc, Toast.LENGTH_LONG).show();
+		} catch (ClientProtocolException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return JSON.parseObject(retSrc,Good.class);
 	}
 }

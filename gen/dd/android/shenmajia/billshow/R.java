@@ -8,71 +8,210 @@
 package dd.android.shenmajia.billshow;
 
 public final class R {
+    public static final class anim {
+        public static final int slide_in_from_bottom=0x7f040000;
+        public static final int slide_in_from_top=0x7f040001;
+        public static final int slide_out_to_bottom=0x7f040002;
+        public static final int slide_out_to_top=0x7f040003;
+    }
     public static final class attr {
+        /**  Deprecated 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int ptrAdapterViewBackground=0x7f01000d;
+        /** <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>rotate</code></td><td>0x0</td><td></td></tr>
+<tr><td><code>flip</code></td><td>0x1</td><td></td></tr>
+</table>
+         */
+        public static final int ptrAnimationStyle=0x7f01000c;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int ptrDrawable=0x7f010006;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int ptrDrawableBottom=0x7f01000f;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int ptrDrawableEnd=0x7f010008;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int ptrDrawableStart=0x7f010007;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int ptrDrawableTop=0x7f01000e;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int ptrHeaderBackground=0x7f010001;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int ptrHeaderSubTextColor=0x7f010003;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int ptrHeaderTextAppearance=0x7f01000a;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int ptrHeaderTextColor=0x7f010002;
+        /** <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>disabled</code></td><td>0x0</td><td></td></tr>
+<tr><td><code>pullFromStart</code></td><td>0x1</td><td></td></tr>
+<tr><td><code>pullFromEnd</code></td><td>0x2</td><td></td></tr>
+<tr><td><code>both</code></td><td>0x3</td><td></td></tr>
+<tr><td><code>manualOnly</code></td><td>0x4</td><td></td></tr>
+<tr><td><code>pullDownFromTop</code></td><td>0x1</td><td> These last two are depreacted </td></tr>
+<tr><td><code>pullUpFromBottom</code></td><td>0x2</td><td></td></tr>
+</table>
+         */
+        public static final int ptrMode=0x7f010004;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
+         */
+        public static final int ptrOverScroll=0x7f010009;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int ptrRefreshableViewBackground=0x7f010000;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
+         */
+        public static final int ptrShowIndicator=0x7f010005;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int ptrSubHeaderTextAppearance=0x7f01000b;
+    }
+    public static final class dimen {
+        public static final int header_footer_internal_padding=0x7f060005;
+        public static final int header_footer_left_right_padding=0x7f060003;
+        public static final int header_footer_max_width=0x7f060006;
+        public static final int header_footer_top_bottom_padding=0x7f060004;
+        public static final int indicator_corner_radius=0x7f060001;
+        public static final int indicator_internal_padding=0x7f060002;
+        public static final int indicator_right_padding=0x7f060000;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int arrow_down=0x7f020000;
+        public static final int arrow_up=0x7f020001;
+        public static final int default_ptr_flip_bottom=0x7f020002;
+        public static final int default_ptr_flip_left=0x7f020003;
+        public static final int default_ptr_flip_right=0x7f020004;
+        public static final int default_ptr_flip_top=0x7f020005;
+        public static final int default_ptr_rotate=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int indicator_bg_bottom=0x7f020008;
+        public static final int indicator_bg_top=0x7f020009;
     }
     public static final class id {
-        public static final int TextView01=0x7f070011;
-        public static final int TextView02=0x7f070013;
-        public static final int TextView03=0x7f070015;
-        public static final int bt_load=0x7f070034;
-        public static final int btn_add_bill_price=0x7f070001;
-        public static final int btn_login=0x7f070019;
-        public static final int btn_near_places=0x7f07001c;
-        public static final int btn_place_search=0x7f07001d;
-        public static final int btn_reg=0x7f07001a;
-        public static final int btn_search_good=0x7f07002a;
-        public static final int btn_submit=0x7f07000c;
-        public static final int btn_write_bill=0x7f07000d;
-        public static final int btn_write_cost=0x7f07000e;
-        public static final int button1=0x7f070024;
-        public static final int button2=0x7f070023;
-        public static final int dialog_search_good=0x7f070025;
-        public static final int et_amount=0x7f07002e;
-        public static final int et_desc=0x7f07000b;
-        public static final int et_email=0x7f070018;
-        public static final int et_money=0x7f07000a;
-        public static final int et_name=0x7f070026;
-        public static final int et_password=0x7f070017;
-        public static final int et_password_confirm=0x7f070021;
-        public static final int et_place_name=0x7f07001e;
-        public static final int et_price=0x7f07002d;
-        public static final int et_psasword=0x7f070020;
-        public static final int et_search_good_q=0x7f070029;
-        public static final int et_total=0x7f070005;
-        public static final int et_username=0x7f070022;
-        public static final int exit=0x7f07003a;
-        public static final int head=0x7f07001b;
-        public static final int logout_menu=0x7f070039;
-        public static final int lv_bill_prices=0x7f070007;
-        public static final int lv_goods=0x7f07002b;
-        public static final int lv_places=0x7f07001f;
-        public static final int menu_settings=0x7f070036;
-        public static final int panelBottom=0x7f070002;
-        public static final int pg=0x7f070035;
-        public static final int rl_top=0x7f070031;
-        public static final int submit=0x7f070006;
-        public static final int tableRow2=0x7f070028;
-        public static final int tb_bottom=0x7f070003;
-        public static final int textView1=0x7f07000f;
-        public static final int toggleButton1=0x7f070027;
-        public static final int toppanel=0x7f070000;
-        public static final int tv_address=0x7f070033;
-        public static final int tv_bills_count=0x7f070010;
-        public static final int tv_costs_sum=0x7f070014;
-        public static final int tv_desc=0x7f070009;
-        public static final int tv_distance=0x7f070032;
-        public static final int tv_money=0x7f070008;
-        public static final int tv_name=0x7f07002c;
-        public static final int tv_norm=0x7f070030;
-        public static final int tv_plus=0x7f070016;
-        public static final int tv_total=0x7f070004;
-        public static final int tv_unit=0x7f07002f;
-        public static final int tv_username=0x7f070012;
-        public static final int write_bill_menu=0x7f070037;
-        public static final int write_cost_menu=0x7f070038;
+        public static final int TextView01=0x7f05001e;
+        public static final int TextView02=0x7f050020;
+        public static final int TextView03=0x7f050022;
+        public static final int both=0x7f050003;
+        public static final int btn_add_bill_price=0x7f05000d;
+        public static final int btn_login=0x7f050026;
+        public static final int btn_near_places=0x7f050029;
+        public static final int btn_place_search=0x7f05002a;
+        public static final int btn_reg=0x7f050027;
+        public static final int btn_search_good=0x7f05003b;
+        public static final int btn_submit=0x7f050019;
+        public static final int btn_write_bill=0x7f05001a;
+        public static final int btn_write_cost=0x7f05001b;
+        public static final int button1=0x7f050031;
+        public static final int button2=0x7f050030;
+        public static final int dialog_search_good=0x7f050032;
+        public static final int disabled=0x7f050000;
+        public static final int et_amount=0x7f05003f;
+        public static final int et_barcode=0x7f050037;
+        public static final int et_cost=0x7f050012;
+        public static final int et_desc=0x7f050018;
+        public static final int et_email=0x7f050025;
+        public static final int et_money=0x7f050017;
+        public static final int et_name=0x7f050033;
+        public static final int et_norm=0x7f050036;
+        public static final int et_origin=0x7f050038;
+        public static final int et_password=0x7f050024;
+        public static final int et_password_confirm=0x7f05002e;
+        public static final int et_place_name=0x7f05002b;
+        public static final int et_price=0x7f05003e;
+        public static final int et_psasword=0x7f05002d;
+        public static final int et_search_good_q=0x7f05003a;
+        public static final int et_taglist=0x7f050035;
+        public static final int et_total=0x7f050011;
+        public static final int et_unit=0x7f050034;
+        public static final int et_username=0x7f05002f;
+        public static final int exit=0x7f05004d;
+        public static final int flip=0x7f050008;
+        public static final int gridview=0x7f050009;
+        public static final int head=0x7f050028;
+        public static final int logout_menu=0x7f05004c;
+        public static final int lv_bill_prices=0x7f050014;
+        public static final int lv_goods=0x7f05003c;
+        public static final int lv_places=0x7f05002c;
+        public static final int manualOnly=0x7f050004;
+        public static final int menu_settings=0x7f050049;
+        public static final int panelBottom=0x7f05000e;
+        public static final int pullDownFromTop=0x7f050005;
+        public static final int pullFromEnd=0x7f050002;
+        public static final int pullFromStart=0x7f050001;
+        public static final int pullUpFromBottom=0x7f050006;
+        public static final int pull_to_refresh_image=0x7f050045;
+        public static final int pull_to_refresh_progress=0x7f050046;
+        public static final int pull_to_refresh_sub_text=0x7f050048;
+        public static final int pull_to_refresh_text=0x7f050047;
+        public static final int rl_top=0x7f050042;
+        public static final int rotate=0x7f050007;
+        public static final int scrollview=0x7f05000b;
+        public static final int submit=0x7f050013;
+        public static final int tableRow2=0x7f050039;
+        public static final int tb_bottom=0x7f05000f;
+        public static final int textView1=0x7f05001c;
+        public static final int toppanel=0x7f05000c;
+        public static final int tv_address=0x7f050044;
+        public static final int tv_bills_count=0x7f05001d;
+        public static final int tv_costs_sum=0x7f050021;
+        public static final int tv_desc=0x7f050016;
+        public static final int tv_distance=0x7f050043;
+        public static final int tv_money=0x7f050015;
+        public static final int tv_name=0x7f05003d;
+        public static final int tv_norm=0x7f050041;
+        public static final int tv_plus=0x7f050023;
+        public static final int tv_total=0x7f050010;
+        public static final int tv_unit=0x7f050040;
+        public static final int tv_username=0x7f05001f;
+        public static final int webview=0x7f05000a;
+        public static final int write_bill_menu=0x7f05004a;
+        public static final int write_cost_menu=0x7f05004b;
     }
     public static final class layout {
         public static final int activity_bill_form=0x7f030000;
@@ -90,67 +229,79 @@ public final class R {
         public static final int item_bill_price=0x7f03000c;
         public static final int item_good=0x7f03000d;
         public static final int item_place=0x7f03000e;
-        public static final int moredata=0x7f03000f;
+        public static final int pull_to_refresh_header_horizontal=0x7f03000f;
+        public static final int pull_to_refresh_header_vertical=0x7f030010;
     }
     public static final class menu {
-        public static final int activity_bill_form=0x7f060000;
-        public static final int activity_bills=0x7f060001;
-        public static final int activity_cost_form=0x7f060002;
-        public static final int activity_costs=0x7f060003;
-        public static final int activity_dashboard=0x7f060004;
-        public static final int activity_launcher=0x7f060005;
-        public static final int activity_main=0x7f060006;
-        public static final int activity_map=0x7f060007;
-        public static final int activity_places=0x7f060008;
-        public static final int activity_reg=0x7f060009;
-        public static final int main_menu=0x7f06000a;
+        public static final int activity_bill_form=0x7f090000;
+        public static final int activity_bills=0x7f090001;
+        public static final int activity_cost_form=0x7f090002;
+        public static final int activity_costs=0x7f090003;
+        public static final int activity_dashboard=0x7f090004;
+        public static final int activity_launcher=0x7f090005;
+        public static final int activity_main=0x7f090006;
+        public static final int activity_map=0x7f090007;
+        public static final int activity_places=0x7f090008;
+        public static final int activity_reg=0x7f090009;
+        public static final int main_menu=0x7f09000a;
     }
     public static final class string {
-        public static final int add_bill_price=0x7f04001f;
-        public static final int advence=0x7f040023;
-        public static final int app_name=0x7f040000;
-        public static final int barcode=0x7f040028;
-        public static final int bill_form=0x7f040020;
-        public static final int bills_count=0x7f040016;
-        public static final int costs_sum=0x7f040017;
-        public static final int default_unit=0x7f040025;
-        public static final int desc=0x7f04001d;
-        public static final int email=0x7f040003;
-        public static final int email_hint=0x7f040005;
-        public static final int exit=0x7f040013;
-        public static final int hello=0x7f040015;
-        public static final int hello_world=0x7f040001;
-        public static final int location=0x7f04001a;
-        public static final int login=0x7f040006;
-        public static final int logout=0x7f040012;
-        public static final int menu_settings=0x7f040002;
-        public static final int money=0x7f04001c;
-        public static final int name=0x7f040022;
-        public static final int near=0x7f04002c;
-        public static final int norm=0x7f040027;
-        public static final int origin=0x7f040029;
-        public static final int password=0x7f040004;
-        public static final int password_comfirm=0x7f040009;
-        public static final int reg=0x7f040007;
-        public static final int search=0x7f04002b;
-        public static final int search_good=0x7f04002a;
-        public static final int search_good_hint=0x7f040021;
-        public static final int search_place=0x7f040019;
-        public static final int submit=0x7f04001e;
-        public static final int tag_list=0x7f040026;
-        public static final int title_activity_bill_form=0x7f04000d;
-        public static final int title_activity_bills=0x7f04000c;
-        public static final int title_activity_cost_form=0x7f040011;
-        public static final int title_activity_costs=0x7f040018;
-        public static final int title_activity_dashboard=0x7f04000b;
-        public static final int title_activity_launcher=0x7f040014;
-        public static final int title_activity_map=0x7f04001b;
-        public static final int title_activity_places=0x7f04000e;
-        public static final int title_activity_reg=0x7f040008;
-        public static final int unit=0x7f040024;
-        public static final int username=0x7f04000a;
-        public static final int write_bill=0x7f04000f;
-        public static final int write_cost=0x7f040010;
+        public static final int add_bill_price=0x7f070025;
+        public static final int advence=0x7f070029;
+        public static final int app_name=0x7f070006;
+        public static final int barcode=0x7f07002e;
+        public static final int bill_form=0x7f070026;
+        public static final int bills_count=0x7f07001c;
+        public static final int costs_sum=0x7f07001d;
+        public static final int default_unit=0x7f07002b;
+        public static final int desc=0x7f070023;
+        public static final int email=0x7f070009;
+        public static final int email_hint=0x7f07000b;
+        public static final int exit=0x7f070019;
+        public static final int hello=0x7f07001b;
+        public static final int hello_world=0x7f070007;
+        public static final int hint_taglist=0x7f070035;
+        public static final int location=0x7f070020;
+        public static final int login=0x7f07000c;
+        public static final int logout=0x7f070018;
+        public static final int menu_settings=0x7f070008;
+        public static final int money=0x7f070022;
+        public static final int name=0x7f070028;
+        public static final int near=0x7f070032;
+        public static final int norm=0x7f07002d;
+        public static final int origin=0x7f07002f;
+        public static final int password=0x7f07000a;
+        public static final int password_comfirm=0x7f07000f;
+        /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
+         */
+        public static final int pull_to_refresh_from_bottom_pull_label=0x7f070003;
+        public static final int pull_to_refresh_from_bottom_refreshing_label=0x7f070005;
+        public static final int pull_to_refresh_from_bottom_release_label=0x7f070004;
+        public static final int pull_to_refresh_pull_label=0x7f070000;
+        public static final int pull_to_refresh_refreshing_label=0x7f070002;
+        public static final int pull_to_refresh_release_label=0x7f070001;
+        public static final int reg=0x7f07000d;
+        public static final int require_name=0x7f070033;
+        public static final int require_unit=0x7f070034;
+        public static final int search=0x7f070031;
+        public static final int search_good=0x7f070030;
+        public static final int search_good_hint=0x7f070027;
+        public static final int search_place=0x7f07001f;
+        public static final int submit=0x7f070024;
+        public static final int tag_list=0x7f07002c;
+        public static final int title_activity_bill_form=0x7f070013;
+        public static final int title_activity_bills=0x7f070012;
+        public static final int title_activity_cost_form=0x7f070017;
+        public static final int title_activity_costs=0x7f07001e;
+        public static final int title_activity_dashboard=0x7f070011;
+        public static final int title_activity_launcher=0x7f07001a;
+        public static final int title_activity_map=0x7f070021;
+        public static final int title_activity_places=0x7f070014;
+        public static final int title_activity_reg=0x7f07000e;
+        public static final int unit=0x7f07002a;
+        public static final int username=0x7f070010;
+        public static final int write_bill=0x7f070015;
+        public static final int write_cost=0x7f070016;
     }
     public static final class style {
         /** 
@@ -163,10 +314,251 @@ public final class R {
             backward-compatibility can go here.
         
          */
-        public static final int AppBaseTheme=0x7f050000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f050001;
+        public static final int AppTheme=0x7f080001;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a PullToRefresh.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrAdapterViewBackground dd.android.shenmajia.billshow:ptrAdapterViewBackground}</code></td><td> Deprecated </td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrAnimationStyle dd.android.shenmajia.billshow:ptrAnimationStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrDrawable dd.android.shenmajia.billshow:ptrDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrDrawableBottom dd.android.shenmajia.billshow:ptrDrawableBottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrDrawableEnd dd.android.shenmajia.billshow:ptrDrawableEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrDrawableStart dd.android.shenmajia.billshow:ptrDrawableStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrDrawableTop dd.android.shenmajia.billshow:ptrDrawableTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrHeaderBackground dd.android.shenmajia.billshow:ptrHeaderBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrHeaderSubTextColor dd.android.shenmajia.billshow:ptrHeaderSubTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrHeaderTextAppearance dd.android.shenmajia.billshow:ptrHeaderTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrHeaderTextColor dd.android.shenmajia.billshow:ptrHeaderTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrMode dd.android.shenmajia.billshow:ptrMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrOverScroll dd.android.shenmajia.billshow:ptrOverScroll}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrRefreshableViewBackground dd.android.shenmajia.billshow:ptrRefreshableViewBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrShowIndicator dd.android.shenmajia.billshow:ptrShowIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrSubHeaderTextAppearance dd.android.shenmajia.billshow:ptrSubHeaderTextAppearance}</code></td><td></td></tr>
+           </table>
+           @see #PullToRefresh_ptrAdapterViewBackground
+           @see #PullToRefresh_ptrAnimationStyle
+           @see #PullToRefresh_ptrDrawable
+           @see #PullToRefresh_ptrDrawableBottom
+           @see #PullToRefresh_ptrDrawableEnd
+           @see #PullToRefresh_ptrDrawableStart
+           @see #PullToRefresh_ptrDrawableTop
+           @see #PullToRefresh_ptrHeaderBackground
+           @see #PullToRefresh_ptrHeaderSubTextColor
+           @see #PullToRefresh_ptrHeaderTextAppearance
+           @see #PullToRefresh_ptrHeaderTextColor
+           @see #PullToRefresh_ptrMode
+           @see #PullToRefresh_ptrOverScroll
+           @see #PullToRefresh_ptrRefreshableViewBackground
+           @see #PullToRefresh_ptrShowIndicator
+           @see #PullToRefresh_ptrSubHeaderTextAppearance
+         */
+        public static final int[] PullToRefresh = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007,
+            0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b,
+            0x7f01000c, 0x7f01000d, 0x7f01000e, 0x7f01000f
+        };
+        /**
+          <p>
+          @attr description
+           Deprecated 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          <p>This is a private symbol.
+          @attr name android:ptrAdapterViewBackground
+        */
+        public static final int PullToRefresh_ptrAdapterViewBackground = 13;
+        /**
+          <p>This symbol is the offset where the {@link dd.android.shenmajia.billshow.R.attr#ptrAnimationStyle}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>rotate</code></td><td>0x0</td><td></td></tr>
+<tr><td><code>flip</code></td><td>0x1</td><td></td></tr>
+</table>
+          @attr name android:ptrAnimationStyle
+        */
+        public static final int PullToRefresh_ptrAnimationStyle = 12;
+        /**
+          <p>This symbol is the offset where the {@link dd.android.shenmajia.billshow.R.attr#ptrDrawable}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:ptrDrawable
+        */
+        public static final int PullToRefresh_ptrDrawable = 6;
+        /**
+          <p>This symbol is the offset where the {@link dd.android.shenmajia.billshow.R.attr#ptrDrawableBottom}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:ptrDrawableBottom
+        */
+        public static final int PullToRefresh_ptrDrawableBottom = 15;
+        /**
+          <p>This symbol is the offset where the {@link dd.android.shenmajia.billshow.R.attr#ptrDrawableEnd}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:ptrDrawableEnd
+        */
+        public static final int PullToRefresh_ptrDrawableEnd = 8;
+        /**
+          <p>This symbol is the offset where the {@link dd.android.shenmajia.billshow.R.attr#ptrDrawableStart}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:ptrDrawableStart
+        */
+        public static final int PullToRefresh_ptrDrawableStart = 7;
+        /**
+          <p>This symbol is the offset where the {@link dd.android.shenmajia.billshow.R.attr#ptrDrawableTop}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:ptrDrawableTop
+        */
+        public static final int PullToRefresh_ptrDrawableTop = 14;
+        /**
+          <p>This symbol is the offset where the {@link dd.android.shenmajia.billshow.R.attr#ptrHeaderBackground}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name android:ptrHeaderBackground
+        */
+        public static final int PullToRefresh_ptrHeaderBackground = 1;
+        /**
+          <p>This symbol is the offset where the {@link dd.android.shenmajia.billshow.R.attr#ptrHeaderSubTextColor}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name android:ptrHeaderSubTextColor
+        */
+        public static final int PullToRefresh_ptrHeaderSubTextColor = 3;
+        /**
+          <p>This symbol is the offset where the {@link dd.android.shenmajia.billshow.R.attr#ptrHeaderTextAppearance}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:ptrHeaderTextAppearance
+        */
+        public static final int PullToRefresh_ptrHeaderTextAppearance = 10;
+        /**
+          <p>This symbol is the offset where the {@link dd.android.shenmajia.billshow.R.attr#ptrHeaderTextColor}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name android:ptrHeaderTextColor
+        */
+        public static final int PullToRefresh_ptrHeaderTextColor = 2;
+        /**
+          <p>This symbol is the offset where the {@link dd.android.shenmajia.billshow.R.attr#ptrMode}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>disabled</code></td><td>0x0</td><td></td></tr>
+<tr><td><code>pullFromStart</code></td><td>0x1</td><td></td></tr>
+<tr><td><code>pullFromEnd</code></td><td>0x2</td><td></td></tr>
+<tr><td><code>both</code></td><td>0x3</td><td></td></tr>
+<tr><td><code>manualOnly</code></td><td>0x4</td><td></td></tr>
+<tr><td><code>pullDownFromTop</code></td><td>0x1</td><td> These last two are depreacted </td></tr>
+<tr><td><code>pullUpFromBottom</code></td><td>0x2</td><td></td></tr>
+</table>
+          @attr name android:ptrMode
+        */
+        public static final int PullToRefresh_ptrMode = 4;
+        /**
+          <p>This symbol is the offset where the {@link dd.android.shenmajia.billshow.R.attr#ptrOverScroll}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
+          @attr name android:ptrOverScroll
+        */
+        public static final int PullToRefresh_ptrOverScroll = 9;
+        /**
+          <p>This symbol is the offset where the {@link dd.android.shenmajia.billshow.R.attr#ptrRefreshableViewBackground}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name android:ptrRefreshableViewBackground
+        */
+        public static final int PullToRefresh_ptrRefreshableViewBackground = 0;
+        /**
+          <p>This symbol is the offset where the {@link dd.android.shenmajia.billshow.R.attr#ptrShowIndicator}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
+          @attr name android:ptrShowIndicator
+        */
+        public static final int PullToRefresh_ptrShowIndicator = 5;
+        /**
+          <p>This symbol is the offset where the {@link dd.android.shenmajia.billshow.R.attr#ptrSubHeaderTextAppearance}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:ptrSubHeaderTextAppearance
+        */
+        public static final int PullToRefresh_ptrSubHeaderTextAppearance = 11;
+    };
 }

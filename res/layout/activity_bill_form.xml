@@ -83,7 +83,29 @@
 
                     <requestFocus />
                 </EditText>
+
             </TableRow>
+
+            <TableRow android:layout_width="match_parent" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="消费"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_cost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:inputType="numberDecimal"
+                    android:padding="3dip"
+                    android:text="0" />
+            </TableRow>
+
         </TableLayout>
 
         <Button

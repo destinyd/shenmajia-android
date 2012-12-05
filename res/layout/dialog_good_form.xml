@@ -3,6 +3,7 @@
     android:id="@+id/dialog_search_good"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:orientation="vertical"
     android:stretchColumns="1" >
 
@@ -13,14 +14,14 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             android:padding="3dip"
-            android:text="@string/name"
+            android:text="@string/require_name"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/et_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textNoSuggestions"
+            android:inputType="text"
             android:padding="3dip" >
 
             <requestFocus />
@@ -36,12 +37,6 @@
             android:padding="3dip"
             android:text="@string/advence"
             android:textStyle="bold" />
-
-        <ToggleButton
-            android:id="@+id/toggleButton1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
     </TableRow>
 
     <TableRow>
@@ -51,17 +46,16 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             android:padding="3dip"
-            android:text="@string/unit"
+            android:text="@string/require_unit"
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/et_unit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textNoSuggestions"
+            android:inputType="text"
             android:padding="3dip"
-            android:text="@string/default_unit" >
-
-            <requestFocus />
+            android:text="份" >
         </EditText>
     </TableRow>
 
@@ -78,13 +72,16 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/et_taglist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textNoSuggestions"
+            android:hint="@string/hint_taglist"
+            android:inputType="text"
             android:padding="3dip" >
+
         </EditText>
     </TableRow>
-    
+
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
@@ -98,10 +95,12 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/et_norm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textNoSuggestions"
             android:padding="3dip" >
+
         </EditText>
     </TableRow>
 
@@ -118,10 +117,12 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/et_barcode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textNoSuggestions"
             android:padding="3dip" >
+
         </EditText>
     </TableRow>
 
@@ -138,10 +139,12 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/et_origin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textNoSuggestions"
             android:padding="3dip" >
+
         </EditText>
     </TableRow>
 
@@ -159,12 +162,13 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/et_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textNoSuggestions"
             android:padding="3dip" >
+
         </EditText>
     </TableRow>
-
 
 </TableLayout>

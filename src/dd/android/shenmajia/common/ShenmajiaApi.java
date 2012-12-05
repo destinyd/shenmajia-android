@@ -12,6 +12,7 @@ import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 
 import dd.android.shenmajia.api.BillPrice;
+import dd.android.shenmajia.api.Good;
 import dd.android.shenmajia.api.V1;
 import dd.android.shenmajia.billshow.PropertiesUtil;
 import dd.android.shenmajia.billshow.Settings;
@@ -119,11 +120,17 @@ public class ShenmajiaApi {
 	}
 	
 	public static Boolean create_bill(Integer place_id,
-			Double total, List<BillPrice> bill_prices) {
-		JSONObject json = V1.create_bill(Settings.access_token, place_id, total, bill_prices);
+			Double total,Double cost, List<BillPrice> bill_prices) {
+		JSONObject json = V1.create_bill(Settings.access_token, place_id, total,cost, bill_prices);
 		return true;
 	}
 
+	public static Good create_good(String name,
+			String unit, String taglist, String norm, String barcode,
+			String origin, String desc) {
+		return V1.create_good(Settings.access_token, name, unit, taglist, norm, barcode,
+				origin, desc);
+	}
 	public static void change_activity(Activity activity, Class<?> cls) {
 		Intent intent = new Intent();
 		intent.setClass(activity, cls);

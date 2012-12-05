@@ -46,5 +46,8 @@
     <string name="search_good">搜索商品</string>
     <string name="search">搜索</string>
     <string name="near">周边</string>
+    <string name="require_name">名称(*)</string>
+    <string name="require_unit">单位(*)</string>
+    <string name="hint_taglist">请使用半角,分割。例如:酒,白酒</string>
 
 </resources>

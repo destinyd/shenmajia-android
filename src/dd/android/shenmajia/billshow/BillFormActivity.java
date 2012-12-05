@@ -63,7 +63,7 @@ public class BillFormActivity extends Activity {
 	Runnable runnable;
 	double double_old_total = 0.0;
 	TextView tv_total;
-	EditText et_total;
+	EditText et_total,et_cost;
 	String format_total = "%.2f";
 
 	@Override
@@ -82,6 +82,7 @@ public class BillFormActivity extends Activity {
 
 		tv_total = (TextView) findViewById(R.id.tv_total);
 		et_total = (EditText) findViewById(R.id.et_total);
+		et_cost = (EditText) findViewById(R.id.et_cost);
 
 		bind_bill_prices();
 
@@ -116,6 +117,7 @@ public class BillFormActivity extends Activity {
 					Log.d("str_total", str_total);
 					tv_total.setText(str_total);
 					et_total.setText(str_total);
+					et_cost.setText(str_total);
 				}
 				// 要做的事情
 				mainHandler.postDelayed(this, 1000);
@@ -159,30 +161,30 @@ public class BillFormActivity extends Activity {
 	}
 
 	public void submit(View v) {
-		new AlertDialog.Builder(BillFormActivity.this)
-		.setTitle("提示")
-		.setMessage("确认提交?")
-		.setPositiveButton("确认", new OnClickListener() {
+		new AlertDialog.Builder(BillFormActivity.this).setTitle("提示")
+				.setMessage("确认提交?")
+				.setPositiveButton("确认", new OnClickListener() {
 
-			@Override
-			public void onClick(DialogInterface dialog,
-					int which) {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
 
-				Double total = Double.parseDouble(et_total.getText()
-						.toString());
-				if (ShenmajiaApi.create_bill(place_id, total,
-						bill_prices)) {
+						Double total = Double.parseDouble(et_total.getText()
+								.toString());
+						Double cost = Double.parseDouble(et_cost.getText()
+								.toString());						
+						if (ShenmajiaApi.create_bill(place_id, total,cost,
+								bill_prices)) {
 
-					PlacesActivity.factory.finish();
-					mainHandler.removeCallbacks(runnable);
-					bill_prices.clear();
+							PlacesActivity.factory.finish();
+							mainHandler.removeCallbacks(runnable);
+							bill_prices.clear();
 
-					ShenmajiaApi.change_activity(BillFormActivity.this,
-							DashboardActivity.class);
-				}
-				dialog.dismiss();
-			}
-		}).setNegativeButton("取消", null).show();
+							ShenmajiaApi.change_activity(BillFormActivity.this,
+									DashboardActivity.class);
+						}
+						dialog.dismiss();
+					}
+				}).setNegativeButton("取消", null).show();
 	}
 
 	public void search_good(View v) {
@@ -194,35 +196,13 @@ public class BillFormActivity extends Activity {
 				Log.d("search_good_q", et_search_good_q.getText().toString());
 				String result = ShenmajiaApi.get_search_good(et_search_good_q
 						.getText().toString());
-				// List<Good>
 				goods = JSON.parseArray(result, Good.class);
-				//
-				// search_goods = new ArrayList<HashMap<String, Object>>();
-				//
-				// for (Good good : goods) {
-				// HashMap<String, Object> item = new HashMap<String, Object>();
-				// item.put("id", good.id);
-				// item.put("name", good.name);
-				// item.put("unit", good.unit);
-				// if (good.norm == null || good.norm.trim() == "")
-				// item.put("norm", "");
-				// else
-				// item.put("norm", String.format(format_norm, good.norm));
-				// search_goods.add(item);
-				//
-				// }
 
 				mainHandler.post(new Runnable() {
 					@Override
 					public void run() {// 这将在主线程运行
 						GoodAdapter good_adapter = new GoodAdapter(
 								BillFormActivity.this, goods);
-						// SimpleAdapter adapter = new SimpleAdapter(
-						// BillFormActivity.this, search_goods,
-						// R.layout.good_item, new String[] { "id",
-						// "name", "norm", "unit" }, new int[] {
-						// 0, R.id.tv_name, R.id.tv_norm,
-						// R.id.tv_unit });
 						lv_goods.setAdapter(good_adapter);
 
 					}
@@ -236,11 +216,6 @@ public class BillFormActivity extends Activity {
 	public void bind_bill_prices() {
 		BillPriceAdapter bill_price_adapter = new BillPriceAdapter(
 				BillFormActivity.this, bill_prices);
-		// SimpleAdapter adapter = new SimpleAdapter(BillFormActivity.this,
-		// selected_bill_prices, R.layout.bill_price_item, new String[] { "id",
-		// "name", "norm", "unit","price","amount" }, new int[] { 0,
-		// R.id.tv_name,
-		// R.id.tv_norm, R.id.tv_unit, R.id.et_price,R.id.et_amount });
 		lv_bill_prices.setAdapter(bill_price_adapter);
 	}
 
@@ -265,55 +240,88 @@ public class BillFormActivity extends Activity {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						if (dialog_good_form != null) {
-							BillFormActivity.this
-									.removeDialog(R.layout.dialog_good_form);
-							dialog_good_form = null;
-						}
-
-						LayoutInflater inflater = getLayoutInflater();
-						dialog_good_form = inflater.inflate(
-								R.layout.dialog_good_form, null);
-						new AlertDialog.Builder(BillFormActivity.this)
-								.setTitle("新建商品").setView(dialog_good_form)
-								.setPositiveButton("提交", new OnClickListener() {
-
-									@Override
-									public void onClick(DialogInterface dialog,
-											int which) {
-
-									}
-								}).setNeutralButton("取消", null).show();
-					};
+						show_dialog_good_form();
+					}
 				}).show();
 	}
+
+	public void show_dialog_good_form() {
+		if (dialog_good_form != null) {
+			BillFormActivity.this.removeDialog(R.layout.dialog_good_form);
+			dialog_good_form = null;
+		}
+
+		LayoutInflater inflater = getLayoutInflater();
+		dialog_good_form = inflater.inflate(R.layout.dialog_good_form, null);
+		new AlertDialog.Builder(BillFormActivity.this).setTitle("新建商品")
+				.setView(dialog_good_form)
+				.setPositiveButton("提交", new OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						String name = ((EditText) dialog_good_form
+								.findViewById(R.id.et_name)).getText()
+								.toString().trim();
+						String unit = ((EditText) dialog_good_form
+								.findViewById(R.id.et_unit)).getText()
+								.toString().trim();
+						String taglist = ((EditText) dialog_good_form
+								.findViewById(R.id.et_taglist)).getText()
+								.toString().trim();
+						String norm = ((EditText) dialog_good_form
+								.findViewById(R.id.et_norm)).getText()
+								.toString().trim();
+						String barcode = ((EditText) dialog_good_form
+								.findViewById(R.id.et_barcode)).getText()
+								.toString().trim();
+						String origin = ((EditText) dialog_good_form
+								.findViewById(R.id.et_origin)).getText()
+								.toString().trim();
+						String desc = ((EditText) dialog_good_form
+								.findViewById(R.id.et_desc)).getText()
+								.toString().trim();
+						if (name.length() > 0 && unit.length() > 0) {
+							Good good = ShenmajiaApi.create_good(
+									name, unit, taglist, norm,
+									barcode, origin, desc);
+							add_bill_price(good);
+							dialog.dismiss();
+						}
+					}
+				}).setNeutralButton("取消", null).show();
+	};
 
 	public void bind_lv_goods_click() {
 		lv_goods.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> myAdapter, View myView,
 					int myItemInt, long mylng) {
 				Good good = (Good) lv_goods.getItemAtPosition(myItemInt);
-				BillPrice bp = BillPrice.from_good(good);
-				// Toast.makeText(BillFormActivity.this,
-				// hash.get("id").toString(), Toast.LENGTH_SHORT).show();
-				Log.d("click_item", good.toString());
-
-				// selected_bill_prices.add(good);
-				Boolean has_it = false;
-				for (BillPrice bill_price : bill_prices) {
-					if (bill_price.good_id == bp.good_id) {
-						has_it = true;
-						break;
-					}
-				}
-				if (!has_it) {
-					bill_prices.add(bp);
-
-					bind_bill_prices();
-				}
+				add_bill_price(good);
 				ad.dismiss();
 			}
+
 		});
+	}
+
+	public void add_bill_price(Good good) {
+		BillPrice bp = BillPrice.from_good(good);
+		// Toast.makeText(BillFormActivity.this,
+		// hash.get("id").toString(), Toast.LENGTH_SHORT).show();
+		Log.d("click_item", good.toString());
+
+		// selected_bill_prices.add(good);
+		Boolean has_it = false;
+		for (BillPrice bill_price : bill_prices) {
+			if (bill_price.good_id == bp.good_id) {
+				has_it = true;
+				break;
+			}
+		}
+		if (!has_it) {
+			bill_prices.add(bp);
+
+			bind_bill_prices();
+		}
 	}
 
 	@Override
