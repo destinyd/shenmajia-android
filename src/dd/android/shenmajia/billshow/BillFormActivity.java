@@ -15,6 +15,8 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -73,6 +75,10 @@ public class BillFormActivity extends Activity {
 		mIntent = getIntent();
 		place_id = mIntent.getIntExtra("place_id", 0);
 		place_name = mIntent.getStringExtra("place_name");
+		if(place_name == null){
+			ShenmajiaApi.change_activity(this, DashboardActivity.class);
+			return;
+		}
 		Log.d("place_name", place_name);
 		// place_id = savedInstanceState.getInt("place_id");
 		// place_name = savedInstanceState.getString("place_name");
@@ -326,9 +332,15 @@ public class BillFormActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_bill_form, menu);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu_main, menu);
 		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// 如果不关闭当前的会出现好多个页面
+		return MenusController.mainOptionsItemSelected(this,item);
 	}
 
 }

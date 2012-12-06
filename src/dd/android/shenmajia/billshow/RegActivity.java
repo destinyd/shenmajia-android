@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -29,9 +30,15 @@ public class RegActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_reg, menu);
+		getMenuInflater().inflate(R.menu.menu_sign, menu);
 		return true;
 	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// 如果不关闭当前的会出现好多个页面
+		return MenusController.signOptionsItemSelected(this,item);
+	}	
 
 	public void regClick(View v) {
 		EditText et_email = (EditText) this.findViewById(R.id.et_email);

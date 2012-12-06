@@ -3,6 +3,8 @@ package dd.android.shenmajia.billshow;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 public class BillsActivity extends Activity {
 
@@ -14,9 +16,15 @@ public class BillsActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_bills, menu);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu_main, menu);
 		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// 如果不关闭当前的会出现好多个页面
+		return MenusController.mainOptionsItemSelected(this,item);
 	}
 
 }

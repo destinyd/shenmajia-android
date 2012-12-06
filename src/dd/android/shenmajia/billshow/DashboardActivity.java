@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -47,14 +45,15 @@ import dd.android.shenmajia.common.WiFiInfoManager.WifiInfo;
 public class DashboardActivity extends Activity {
 
 	static DashboardActivity _factory = null;
-	
+
 	ProgressDialog dialog = null;
 
-	//Thread
+	// Thread
 	private ExecutorService service = Executors.newSingleThreadExecutor();
-	private Handler mainHandler = new Handler() ;
-	//Thread
-//	
+	private Handler mainHandler = new Handler();
+
+	// Thread
+	//
 	public static DashboardActivity factory() {
 		if (_factory == null)
 			_factory = new DashboardActivity();
@@ -82,7 +81,7 @@ public class DashboardActivity extends Activity {
 
 				final JSONObject json = ShenmajiaApi.get_dashboard();
 
-//				String result = ShenmajiaApi.get_near_places(page);
+				// String result = ShenmajiaApi.get_near_places(page);
 				mainHandler.post(new Runnable() {
 					@Override
 					public void run() {// 这将在主线程运行
@@ -98,7 +97,7 @@ public class DashboardActivity extends Activity {
 		TextView tv_username = (TextView) findViewById(R.id.tv_username);
 		TextView tv_bills_count = (TextView) findViewById(R.id.tv_bills_count);
 		TextView tv_costs_sum = (TextView) findViewById(R.id.tv_costs_sum);
-		
+
 		tv_username.setText(Settings.username);
 		tv_bills_count.setText(json.getString("bills_count"));
 		tv_costs_sum.setText(json.getString("costs_sum"));
@@ -114,34 +113,14 @@ public class DashboardActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.main_menu, menu);
+		inflater.inflate(R.menu.menu_main, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		Intent intent = new Intent();
-		switch (item.getItemId()) {
-		case R.id.write_bill_menu:
-			intent.setClass(this, BillFormActivity.class);
-			break;
-		case R.id.write_cost_menu:
-			intent.setClass(this, CostFormActivity.class);
-			break;
-		case R.id.logout_menu:
-			Settings.access_token = "";
-			PropertiesUtil.writeConfiguration(this);
-			intent.setClass(this, LoginActivity.class);
-			break;
-		case R.id.exit:
-			System.exit(0);
-			break;
-		default:
-			return false;
-		}
-		startActivity(intent);
 		// 如果不关闭当前的会出现好多个页面
-		return true;
+		return MenusController.mainOptionsItemSelected(this,item);
 	}
 
 	public void to_bill_form(View v) {

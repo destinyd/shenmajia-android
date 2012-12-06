@@ -2,7 +2,6 @@ package dd.android.shenmajia.billshow;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
 
 //public class PlaceSelectActivity extends MapActivity {
 	public class PlaceSelectActivity extends Activity {
@@ -37,12 +36,6 @@ import android.view.Menu;
 //		mc.animateTo(gp);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_map, menu);
-		return true;
-	}
 
 //	@Override
 //	protected boolean isRouteDisplayed() {

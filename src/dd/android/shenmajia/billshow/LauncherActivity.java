@@ -2,7 +2,6 @@ package dd.android.shenmajia.billshow;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
 import dd.android.shenmajia.common.ShenmajiaApi;
 
 public class LauncherActivity extends Activity {
@@ -21,13 +20,6 @@ public class LauncherActivity extends Activity {
 		{
 			ShenmajiaApi.change_activity(this, LoginActivity.class);
 		}
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_launcher, menu);
-		return true;
 	}
 
 }

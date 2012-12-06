@@ -170,16 +170,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int et_total=0x7f050011;
         public static final int et_unit=0x7f050034;
         public static final int et_username=0x7f05002f;
-        public static final int exit=0x7f05004d;
+        public static final int exit=0x7f05004c;
         public static final int flip=0x7f050008;
         public static final int gridview=0x7f050009;
         public static final int head=0x7f050028;
-        public static final int logout_menu=0x7f05004c;
+        public static final int logout_menu=0x7f05004b;
         public static final int lv_bill_prices=0x7f050014;
         public static final int lv_goods=0x7f05003c;
         public static final int lv_places=0x7f05002c;
         public static final int manualOnly=0x7f050004;
-        public static final int menu_settings=0x7f050049;
+        public static final int menu_login=0x7f05004d;
+        public static final int menu_reg=0x7f05004e;
         public static final int panelBottom=0x7f05000e;
         public static final int pullDownFromTop=0x7f050005;
         public static final int pullFromEnd=0x7f050002;
@@ -210,8 +211,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int tv_unit=0x7f050040;
         public static final int tv_username=0x7f05001f;
         public static final int webview=0x7f05000a;
-        public static final int write_bill_menu=0x7f05004a;
-        public static final int write_cost_menu=0x7f05004b;
+        public static final int write_bill_menu=0x7f050049;
+        public static final int write_cost_menu=0x7f05004a;
     }
     public static final class layout {
         public static final int activity_bill_form=0x7f030000;
@@ -233,17 +234,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_header_vertical=0x7f030010;
     }
     public static final class menu {
-        public static final int activity_bill_form=0x7f090000;
-        public static final int activity_bills=0x7f090001;
-        public static final int activity_cost_form=0x7f090002;
-        public static final int activity_costs=0x7f090003;
-        public static final int activity_dashboard=0x7f090004;
-        public static final int activity_launcher=0x7f090005;
-        public static final int activity_main=0x7f090006;
-        public static final int activity_map=0x7f090007;
-        public static final int activity_places=0x7f090008;
-        public static final int activity_reg=0x7f090009;
-        public static final int main_menu=0x7f09000a;
+        public static final int menu_main=0x7f090000;
+        public static final int menu_sign=0x7f090001;
     }
     public static final class string {
         public static final int add_bill_price=0x7f070025;
