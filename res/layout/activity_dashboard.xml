@@ -44,8 +44,11 @@
         android:layout_alignBaseline="@+id/TextView01"
         android:layout_alignBottom="@+id/TextView01"
         android:layout_alignLeft="@+id/tv_username"
+        android:clickable="true"
+        android:linksClickable="true"
         android:onClick="to_bills"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#0000FF" />
 
     <TextView
         android:id="@+id/TextView01"
@@ -74,8 +77,11 @@
         android:layout_alignBaseline="@+id/TextView02"
         android:layout_alignBottom="@+id/TextView02"
         android:layout_alignLeft="@+id/tv_bills_count"
+        android:clickable="true"
+        android:linksClickable="true"
         android:onClick="to_costs"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#0000FF" />
 
     <TextView
         android:id="@+id/tv_username"

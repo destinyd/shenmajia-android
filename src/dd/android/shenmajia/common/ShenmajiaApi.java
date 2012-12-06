@@ -12,6 +12,7 @@ import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 
 import dd.android.shenmajia.api.BillPrice;
+import dd.android.shenmajia.api.Cost;
 import dd.android.shenmajia.api.Good;
 import dd.android.shenmajia.api.V1;
 import dd.android.shenmajia.billshow.PropertiesUtil;
@@ -105,13 +106,17 @@ public class ShenmajiaApi {
 		return V1.search_good(Settings.access_token, q, page);
 	}	
 
-	public static String get_near_places() {
-		return get_near_places(1);
-	}
+//	public static String get_near_places() {
+//		return get_near_places(1);
+//	}
 
 	public static String get_near_places(Integer page) {
 		return V1.search_place(Settings.access_token, "", Settings.lat,
 				Settings.lng, page);
+	}
+	
+	public static List<Cost> get_costs(Integer page) {
+		return V1.costs(Settings.access_token,page);
 	}
 
 	public static Boolean create_cost(float money, String desc) {

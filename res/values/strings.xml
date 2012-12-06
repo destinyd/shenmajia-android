@@ -49,5 +49,7 @@
     <string name="require_name">名称(*)</string>
     <string name="require_unit">单位(*)</string>
     <string name="hint_taglist">请使用半角,分割。例如:酒,白酒</string>
+    <string name="cost">消费</string>
+    <string name="yuan">元</string>
 
 </resources>

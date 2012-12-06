@@ -38,7 +38,7 @@ public class V1 {
 	public static String search_good_url = domain_url
 			+ "/api/v1/goods/search.json?access_token=%s&q=%s&page=%d";
 	public static String reg_url = domain_url + "/api/v1/reg";
-	public static String costs_url = domain_url + "/api/v1/costs";
+	public static String costs_url = domain_url + "/api/v1/costs.json?access_token=%s&page=%d";
 	public static String bills_url = domain_url + "/api/v1/bills";
 	public static String goods_url = domain_url + "/api/v1/goods";
 
@@ -317,6 +317,37 @@ public class V1 {
 		Log.d("search_good", retSrc);
 		return retSrc;
 	}
+	
+	public static List<Cost> costs(String access_token,Integer page) {
+		HttpResponse httpResponse1;
+		String retSrc = "";
+
+		String url = String.format(costs_url, access_token,page);
+		HttpGet request = new HttpGet(url);
+		try {
+			httpResponse1 = new DefaultHttpClient().execute(request);
+		} catch (ClientProtocolException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return null;
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return null;
+		}
+		try {
+			retSrc = EntityUtils.toString(httpResponse1.getEntity());
+			Log.d("r costs", retSrc);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		List<Cost> costs = JSON.parseArray(retSrc,Cost.class);
+		return costs;
+	}	
 
 	public static JSONObject create_cost(String access_token, Float money,
 			String desc) {
