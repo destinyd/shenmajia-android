@@ -79,6 +79,10 @@
             android:name="dd.android.shenmajia.billshow.PlaceSelectActivity"
             android:label="@string/title_activity_map" >
         </activity>
+        <activity
+            android:name="dd.android.shenmajia.billshow.SearchGoodActivity"
+            android:label="@string/title_activity_search_good" >
+        </activity>
     </application>
 
 </manifest>

@@ -51,5 +51,8 @@
     <string name="hint_taglist">请使用半角,分割。例如:酒,白酒</string>
     <string name="cost">消费</string>
     <string name="yuan">元</string>
+    <string name="title_activity_search_good">SearchGoodActivity</string>
+    <string name="place">地点</string>
+    <string name="new_good">新品</string>
 
 </resources>

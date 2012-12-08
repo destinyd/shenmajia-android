@@ -184,7 +184,7 @@ public class PlacesActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// 如果不关闭当前的会出现好多个页面
-		return MenusController.mainOptionsItemSelected(this,item);
+		return MenusController.mainOptionsItemSelected(this, item);
 	}
 
 	// String distance_m_format = "%.0f 米";
@@ -206,7 +206,9 @@ public class PlacesActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				Place select_place = places.get(arg2);
+				Log.d("arg2",String.valueOf(arg2));
+				Log.d("arg3",String.valueOf(arg3));
+				Place select_place = places.get(arg2 - 1);
 				Intent intent = new Intent();
 				intent.setClass(PlacesActivity.this, BillFormActivity.class);
 				intent.putExtra("place_id", select_place.id);
@@ -216,8 +218,9 @@ public class PlacesActivity extends Activity {
 				PlacesActivity.this.startActivity(intent);
 				// PlacesActivity.this.finish();
 				Toast.makeText(PlacesActivity.this,
-						"填写在" + places.get(arg2).name + "的账单",
+						"请选择在" +select_place.name + "购买的商品",
 						Toast.LENGTH_SHORT).show();
+				finish();
 			}
 
 		});
@@ -226,12 +229,10 @@ public class PlacesActivity extends Activity {
 
 			@Override
 			public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-				lv_places.setLastUpdatedLabel(DateUtils
-						.formatDateTime(getApplicationContext(),
-								System.currentTimeMillis(),
-								DateUtils.FORMAT_SHOW_TIME
-										| DateUtils.FORMAT_SHOW_DATE
-										| DateUtils.FORMAT_ABBREV_ALL));
+				lv_places.setLastUpdatedLabel(DateUtils.formatDateTime(
+						getApplicationContext(), System.currentTimeMillis(),
+						DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE
+								| DateUtils.FORMAT_ABBREV_ALL));
 				if (state == 1) {
 					load_search_place();
 				} else {

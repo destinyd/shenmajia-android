@@ -97,59 +97,69 @@ public class ShenmajiaApi {
 		return V1.search_place(Settings.access_token, q, Settings.lat,
 				Settings.lng, page);
 	}
-	
-	public static String get_search_good(String q) {
-		return get_search_good(q, 1);
-	}
+
+//	public static String get_search_good(String q) {
+//		return get_search_good(q, 1);
+//	}
 
 	public static String get_search_good(String q, Integer page) {
 		return V1.search_good(Settings.access_token, q, page);
-	}	
+	}
 
-//	public static String get_near_places() {
-//		return get_near_places(1);
-//	}
+	// public static String get_near_places() {
+	// return get_near_places(1);
+	// }
 
 	public static String get_near_places(Integer page) {
 		return V1.search_place(Settings.access_token, "", Settings.lat,
 				Settings.lng, page);
 	}
-	
+
 	public static List<Cost> get_costs(Integer page) {
-		return V1.costs(Settings.access_token,page);
+		return V1.costs(Settings.access_token, page);
+	}
+	
+	public static List<Good> get_place_goods(Integer place_id,Integer page) {
+		return V1.place_goods(Settings.access_token, place_id, page);
 	}
 
 	public static Boolean create_cost(float money, String desc) {
 		JSONObject json = V1.create_cost(Settings.access_token, money, desc);
 		return true;
 	}
-	
-	public static Boolean create_bill(Integer place_id,
-			Double total,Double cost, List<BillPrice> bill_prices) {
-		JSONObject json = V1.create_bill(Settings.access_token, place_id, total,cost, bill_prices);
+
+	public static Boolean create_bill(Integer place_id, Double total,
+			Double cost, List<BillPrice> bill_prices) {
+		JSONObject json = V1.create_bill(Settings.access_token, place_id,
+				total, cost, bill_prices);
 		return true;
 	}
 
-	public static Good create_good(String name,
-			String unit, String taglist, String norm, String barcode,
-			String origin, String desc) {
-		return V1.create_good(Settings.access_token, name, unit, taglist, norm, barcode,
-				origin, desc);
+	public static Good create_good(String name, String unit, String taglist,
+			String norm, String barcode, String origin, String desc) {
+		return V1.create_good(Settings.access_token, name, unit, taglist, norm,
+				barcode, origin, desc);
 	}
 	public static void change_activity(Activity activity, Class<?> cls) {
+		change_activity(activity,cls,true);
+	}
+	public static void change_activity(Activity activity, Class<?> cls,
+			boolean finish) {
 		Intent intent = new Intent();
 		intent.setClass(activity, cls);
 		activity.startActivity(intent);
-		activity.finish();
+		if (finish) {
+			activity.finish();
+		}
 	}
 
 	public static ProgressDialog loading(Activity activity) {
-		return loading(activity,"");
+		return loading(activity, "");
 	}
-	
-	public static ProgressDialog loading(Activity activity,String p_message) {
+
+	public static ProgressDialog loading(Activity activity, String p_message) {
 		String message = p_message;
-		if(message.length() == 0)
+		if (message.length() == 0)
 			message = "读取中,请稍后...";
 		return ProgressDialog.show(activity, // context
 				"", // title
