@@ -8,6 +8,9 @@ import java.util.concurrent.Executors;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.format.DateUtils;
@@ -71,6 +74,7 @@ public class PlacesActivity extends Activity {
 	}
 
 	private void load_near_places() {
+		init_location();
 		state = 0;
 		page = 1;
 		places.clear();
@@ -257,5 +261,38 @@ public class PlacesActivity extends Activity {
 			}
 		});
 
+	}
+	
+	
+	@SuppressWarnings("static-access")
+	private void init_location() {
+		LocationManager locationManager;
+		String serviceName = this.LOCATION_SERVICE;
+		locationManager = (LocationManager) this.getSystemService(serviceName);
+		// 查询条件
+		Criteria criteria = new Criteria();
+		criteria.setAccuracy(Criteria.ACCURACY_FINE);
+		criteria.setAltitudeRequired(false);
+		criteria.setBearingRequired(false);
+		criteria.setCostAllowed(true);
+		criteria.setPowerRequirement(Criteria.POWER_LOW);
+
+		String provider = locationManager.getBestProvider(criteria, true);
+		Location location = locationManager.getLastKnownLocation(provider);
+		// if (location != null) {
+		updateWithNewLocation(location);
+		// 设置监听器，自动更新的最小时间为间隔30分钟，最小位移变化超过100米
+//		locationManager.requestLocationUpdates(provider, 300000, 100,
+//				locationListener);
+		// } else {
+		// getLocation();
+		// }
+	}
+	
+	private void updateWithNewLocation(Location location) {
+		if (location != null) {
+			Settings.lat = location.getLatitude();
+			Settings.lng = location.getLongitude();
+		}
 	}
 }

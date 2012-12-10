@@ -165,29 +165,29 @@ public class DashboardActivity extends Activity {
 		// if (location != null) {
 		updateWithNewLocation(location);
 		// 设置监听器，自动更新的最小时间为间隔30分钟，最小位移变化超过100米
-		locationManager.requestLocationUpdates(provider, 300000, 100,
-				locationListener);
+//		locationManager.requestLocationUpdates(provider, 300000, 100,
+//				locationListener);
 		// } else {
 		// getLocation();
 		// }
 	}
-
-	private final LocationListener locationListener = new LocationListener() {
-		public void onLocationChanged(Location location) {
-			updateWithNewLocation(location);
-		}
-
-		public void onProviderDisabled(String provider) {
-			updateWithNewLocation(null);
-		}
-
-		public void onProviderEnabled(String provider) {
-		}
-
-		public void onStatusChanged(String provider, int status, Bundle extras) {
-		}
-
-	};
+//
+//	private final LocationListener locationListener = new LocationListener() {
+//		public void onLocationChanged(Location location) {
+//			updateWithNewLocation(location);
+//		}
+//
+//		public void onProviderDisabled(String provider) {
+//			updateWithNewLocation(null);
+//		}
+//
+//		public void onProviderEnabled(String provider) {
+//		}
+//
+//		public void onStatusChanged(String provider, int status, Bundle extras) {
+//		}
+//
+//	};
 
 	private void updateWithNewLocation(Location location) {
 		String latLongString;
