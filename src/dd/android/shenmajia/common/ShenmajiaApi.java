@@ -22,6 +22,11 @@ public class ShenmajiaApi {
 	public static Boolean get_access_token(Activity activity, String username,
 			String password) {
 		JSONObject result = V1.login(username, password);
+		if(result == null){
+			Log.d("login failure","server broken");
+			Toast.makeText(activity, "网络异常", Toast.LENGTH_LONG).show();
+			return false;
+		}
 		Log.d("result", result.toString());
 		// try {
 		if (result.containsKey("access_token")) {

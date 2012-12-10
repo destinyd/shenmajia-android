@@ -206,8 +206,6 @@ public class PlacesActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				Log.d("arg2",String.valueOf(arg2));
-				Log.d("arg3",String.valueOf(arg3));
 				Place select_place = places.get(arg2 - 1);
 				Intent intent = new Intent();
 				intent.setClass(PlacesActivity.this, BillFormActivity.class);

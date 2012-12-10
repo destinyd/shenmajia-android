@@ -34,15 +34,22 @@ public class CostFormActivity extends Activity {
 	public void submit(View v) {
 		EditText et_money = (EditText) findViewById(R.id.et_money);
 		EditText et_desc = (EditText) findViewById(R.id.et_desc);
-		String str_money = et_money.getText().toString();
-		if(str_money == ""
+		String str_money = et_money.getText().toString().trim();
+		if(str_money.length() == 0
 				){
 			Toast.makeText(this,
 					"消费金额不能为空",
 					Toast.LENGTH_LONG).show();
 			return;
 		}
-		Float money = Float.parseFloat(et_money.getText().toString());
+		Float money = Float.parseFloat(str_money);
+		if(money <= 0
+				){
+			Toast.makeText(this,
+					"消费金额必须大于0",
+					Toast.LENGTH_LONG).show();
+			return;
+		}		
 		String desc = et_desc.getText().toString();
 		if(ShenmajiaApi.create_cost(money, desc)){
 			DashboardActivity.factory().finish();

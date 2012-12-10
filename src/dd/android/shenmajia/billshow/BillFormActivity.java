@@ -32,10 +32,6 @@ public class BillFormActivity extends Activity {
 	static String place_name;
 	Intent mIntent;
 	ListView lv_bill_prices;
-//	EditText et_search_good_q;
-	View dialog_search_good = null;
-	View dialog_good_form = null;
-//	PullToRefreshListView lv_goods = null;
 
 	static String format_delete_bill_price = "确定要删除%s吗？";
 	static String format_submit = "总额为%.2f,你支付了其中的%.2f,确定要提交吗？";
@@ -44,9 +40,6 @@ public class BillFormActivity extends Activity {
 
 	static List<BillPrice> bill_prices = new ArrayList<BillPrice>();
 
-	// static List<HashMap<String, Object>> search_goods;
-	// static List<HashMap<String, Object>> selected_bill_prices = new
-	// ArrayList<HashMap<String, Object>>();
 	static String format_norm = "(%s)";
 
 
@@ -68,8 +61,12 @@ public class BillFormActivity extends Activity {
 		setContentView(R.layout.activity_bill_form);
 		factory = this;
 		mIntent = getIntent();
-		place_id = mIntent.getIntExtra("place_id", 0);
+		Integer p_place_id = mIntent.getIntExtra("place_id", 0);
 		place_name = mIntent.getStringExtra("place_name");
+		if(p_place_id != place_id){
+			place_id = p_place_id;
+			bill_prices.clear();
+		}
 		Log.d("place_name", place_id.toString());
 		Log.d("place_name", place_name);
 		if (place_name == null) {

@@ -1,114 +1,146 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="10dp"
+    android:gravity="center_vertical|center_horizontal"
     tools:context=".DashboardActivity" >
 
-    <Button
-        android:id="@+id/btn_write_bill"
+    <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="44dp"
-        android:layout_marginLeft="63dp"
-        android:onClick="to_bill_form"
-        android:text="@string/write_bill" />
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="10dp" >
 
-    <Button
-        android:id="@+id/btn_write_cost"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="@string/hello"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:minWidth="100dp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </TableRow>
+
+    <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="42dp"
-        android:layout_marginRight="47dp"
-        android:onClick="to_cost_form"
-        android:text="@string/write_cost" />
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="10dp" >
 
-    <TextView
-        android:id="@+id/textView1"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="@string/bills_count"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/tv_bills_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:clickable="true"
+            android:linksClickable="true"
+            android:minWidth="100dp"
+            android:onClick="to_bills"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#0000FF" />
+
+    </TableRow>
+
+    <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/btn_write_bill"
-        android:layout_marginRight="32dp"
-        android:layout_marginTop="33dp"
-        android:text="@string/hello"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="10dp" >
 
-    <TextView
-        android:id="@+id/tv_bills_count"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="@string/costs_sum"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/tv_costs_sum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:clickable="true"
+            android:linksClickable="true"
+            android:minWidth="100dp"
+            android:onClick="to_costs"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#0000FF" />
+
+    </TableRow>
+
+    <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/TextView01"
-        android:layout_alignBottom="@+id/TextView01"
-        android:layout_alignLeft="@+id/tv_username"
-        android:clickable="true"
-        android:linksClickable="true"
-        android:onClick="to_bills"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#0000FF" />
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="10dp" >
 
-    <TextView
-        android:id="@+id/TextView01"
+        <TextView
+            android:id="@+id/TextView03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="@string/location"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/tv_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:minWidth="100dp"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </TableRow>
+
+    <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="44dp"
-        android:text="@string/bills_count"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="10dp" >
 
-    <TextView
-        android:id="@+id/TextView02"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="112dp"
-        android:text="@string/costs_sum"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+             />
 
-    <TextView
-        android:id="@+id/tv_costs_sum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/TextView02"
-        android:layout_alignBottom="@+id/TextView02"
-        android:layout_alignLeft="@+id/tv_bills_count"
-        android:clickable="true"
-        android:linksClickable="true"
-        android:onClick="to_costs"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#0000FF" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp" >
 
-    <TextView
-        android:id="@+id/tv_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/TextView01"
-        android:layout_centerHorizontal="true"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+            <Button
+                android:id="@+id/btn_write_bill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="to_bill_form"
+                android:text="@string/write_bill" />
 
-    <TextView
-        android:id="@+id/TextView03"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/TextView01"
-        android:layout_below="@+id/TextView01"
-        android:layout_marginTop="99dp"
-        android:text="@string/location"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+            <Button
+                android:id="@+id/btn_write_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="to_cost_form"
+                android:text="@string/write_cost" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_plus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/TextView03"
-        android:layout_alignBottom="@+id/TextView03"
-        android:layout_alignLeft="@+id/tv_costs_sum"
-        android:text=""
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+    </TableRow>
 
-</RelativeLayout>
+</TableLayout>

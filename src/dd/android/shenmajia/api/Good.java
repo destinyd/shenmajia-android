@@ -2,9 +2,11 @@ package dd.android.shenmajia.api;
 
 public class Good {
 
-	public String name,desc,unit,barcode,origin,image;
+	public String name,desc,unit,barcode,origin;
 	public Integer id;
 	public String _norm = null;
+	public SMJImage image,large,pin,medium,list;
+	
 	static String format_norm = "(%s)";	
 	public String getNorm(){
 			if(_norm == null || _norm.trim().length() == 0){

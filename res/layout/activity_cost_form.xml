@@ -46,8 +46,9 @@
         android:layout_marginLeft="18dp"
         android:layout_toRightOf="@+id/tv_desc"
         android:ems="10"
+        android:gravity="top"
         android:height="250dp"
-        android:inputType="textMultiLine|textNoSuggestions"
+        android:inputType="textMultiLine"
         android:maxLength="255" />
 
     <Button

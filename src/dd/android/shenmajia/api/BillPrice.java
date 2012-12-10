@@ -25,7 +25,6 @@ public class BillPrice {
 		bp.name = good.name;
 		bp.unit = good.unit;
 		bp._norm = good._norm;
-		bp.image = good.image;
 		bp.good_id = good.id;
 		return bp;
 	}

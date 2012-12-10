@@ -2,38 +2,52 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center_vertical|center_horizontal"
-    android:orientation="vertical" >
+    android:layout_gravity="top"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/iv_good"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@id/tv_name"
+        android:src="@drawable/nopic_list" />
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_gravity="top"
+        android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/tv_name"
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
-    </LinearLayout>
+            android:orientation="horizontal" >
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_unit"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textSize="12sp" />
+            android:orientation="horizontal" >
 
-        <TextView
-            android:id="@+id/tv_norm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:width="150dp" />
+            <TextView
+                android:id="@+id/tv_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_norm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:width="150dp" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

@@ -37,10 +37,12 @@ public class V1 {
 			+ "/api/v1/places/search.json?access_token=%s&q=%s&lat=%.3f&lon=%.3f&page=%d";
 	public static String search_good_url = domain_url
 			+ "/api/v1/goods/search.json?access_token=%s&q=%s&page=%d";
-	public static String reg_url = domain_url + "/api/v1/reg";
-	public static String costs_url = domain_url + "/api/v1/costs.json?access_token=%s&page=%d";
-	public static String bills_url = domain_url + "/api/v1/bills";
-	public static String goods_url = domain_url + "/api/v1/goods.json?access_token=%s&place_id=%d&page=%d";
+	public static String reg_url = domain_url + "/api/v1/reg.json";
+	public static String costs_url = domain_url + "/api/v1/costs.json";
+	public static String bills_url = domain_url + "/api/v1/bills.json";
+	public static String goods_url = domain_url + "/api/v1/goods.json";
+	public static String format_costs = "?access_token=%s&page=%d";
+	public static String format_place_goods = "?access_token=%s&place_id=%d&page=%d";
 
 	static String format_bill_prices_key = "bill_prices[%d][%s]";
 	static String format_bill_prices_double = "%.2f";
@@ -322,7 +324,7 @@ public class V1 {
 		HttpResponse httpResponse1;
 		String retSrc = "";
 
-		String url = String.format(costs_url, access_token,page);
+		String url = costs_url + String.format(format_costs, access_token,page);
 		HttpGet request = new HttpGet(url);
 		try {
 			httpResponse1 = new DefaultHttpClient().execute(request);
@@ -353,7 +355,7 @@ public class V1 {
 		HttpResponse httpResponse1;
 		String retSrc = "";
 
-		String url = String.format(goods_url, access_token,place_id,page);
+		String url = goods_url + String.format(format_place_goods, access_token,place_id,page);
 		HttpGet request = new HttpGet(url);
 		try {
 			httpResponse1 = new DefaultHttpClient().execute(request);

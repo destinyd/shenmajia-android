@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import dd.android.shenmajia.api.Good;
 import dd.android.shenmajia.billshow.R;
@@ -40,7 +41,7 @@ public class GoodAdapter extends BaseAdapter {
 		TextView tv_name;
 		TextView tv_unit;
 		TextView tv_norm;
-//		ImageView imageView;
+		ImageView iv_good;
 	}
 
 	//滑动
@@ -60,6 +61,8 @@ public class GoodAdapter extends BaseAdapter {
 					R.id.tv_unit);
 			viewHolder.tv_norm = (TextView)convertView.findViewById(
 					R.id.tv_norm);
+			viewHolder.iv_good = (ImageView)convertView.findViewById(
+					R.id.iv_good);			
 			
 			//动态增加1个ImageView
 //			viewHolder.imageView = new ImageView(context);
@@ -82,7 +85,8 @@ public class GoodAdapter extends BaseAdapter {
 		viewHolder.tv_name.setText(good.name);
 		viewHolder.tv_unit.setText(good.unit);
 		viewHolder.tv_norm.setText(good.getNorm());
-//		viewHolder.imageView.setImageResource(good.photo);
+//		asynLoadBitmap(viewHolder.iv_good,position);//异步去加载图片
+
 		
 //		//对ListView中第1个TextView配置OnClick事件
 //		viewHolder.tv_name.setOnClickListener(new OnClickListener(){
@@ -119,5 +123,42 @@ public class GoodAdapter extends BaseAdapter {
 		
 		return convertView;
 	}
-
+	
+//	private HashMap<Integer,Bitmap> cache = null;
+//
+//	public void asynLoadBitmap(ImageView image,Integer position){
+//		Bitmap bit = cache.get(position);
+//		if(bit ==null){
+//			//使用Task或者是线程去加载图片
+//			new LoadTask(image,new Handler(),position).execute();
+//		}else{
+//			image.setImageBitmap(bit);
+//		}
+//	}
+//	ImageView view;
+//	Handler handler;
+//	int position;
+//	
+//	public void LoadTask extends Runable(){
+//
+//		public LoadTask(ImageView view,Handler handler,int position){
+//			this.view = view;
+//			this.handler = handler;
+//			this.position = position;
+//		}
+//		public void run(){
+//			Bitmap bit = loadBitmap();
+//			setImageBitmap(view,bit,handler,position);
+//		}
+//	}
+//
+//	private void setImageBitmap(final ImageView view,final Bitmap bit,Handler handler,int position){
+//		if(view.getTag() == position){
+//			handler.post(new Raunable(){
+//				public void run(){
+//					view.setImageBitmap(bit);
+//				}
+//			});
+//		}
+//	}
 }
