@@ -1,7 +1,6 @@
 package dd.android.shenmajia.api;
 
 import android.util.Log;
-import dd.android.shenmajia.billshow.Settings;
 
 public class Place {
 	static String distance_km_format = "%.2f 公里";
@@ -13,10 +12,10 @@ public class Place {
 	double distance;
 	String str_distance = null;
 
-	public String getDistance(Double lat, Double lng) {
+	public String getDistance(Double to_lat, Double to_lng) {
 		if (str_distance == null) {
-			Double distance = calculateHaversineMI(lat, lon, Settings.lat,
-					Settings.lng);
+			Double distance = calculateHaversineMI(lat, lon, to_lat,
+					to_lng);
 			if (distance > 1.0)
 				str_distance = String.format(distance_km_format, distance);
 			else {

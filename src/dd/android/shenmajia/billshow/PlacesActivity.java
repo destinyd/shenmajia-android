@@ -291,8 +291,8 @@ public class PlacesActivity extends Activity {
 	
 	private void updateWithNewLocation(Location location) {
 		if (location != null) {
-			Settings.lat = location.getLatitude();
-			Settings.lng = location.getLongitude();
+			Settings.getFactory().lat = location.getLatitude();
+			Settings.getFactory().lng = location.getLongitude();
 		}
 	}
 }

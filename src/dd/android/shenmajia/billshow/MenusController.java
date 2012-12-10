@@ -14,8 +14,9 @@ public class MenusController {
 			ShenmajiaApi.change_activity(context, CostFormActivity.class);
 			break;
 		case R.id.logout_menu:
-			Settings.access_token = "";
-			PropertiesUtil.writeConfiguration(context);
+			Settings.getFactory().access_token = "";
+//			PropertiesUtil.writeConfiguration(context);
+			PropertiesUtil.writeConfiguration();
 			ShenmajiaApi.change_activity(context, LoginActivity.class);
 			break;
 		case R.id.exit:

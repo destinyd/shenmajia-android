@@ -98,7 +98,7 @@ public class DashboardActivity extends Activity {
 		TextView tv_bills_count = (TextView) findViewById(R.id.tv_bills_count);
 		TextView tv_costs_sum = (TextView) findViewById(R.id.tv_costs_sum);
 
-		tv_username.setText(Settings.username);
+		tv_username.setText(Settings.getFactory().username);
 		tv_bills_count.setText(json.getString("bills_count"));
 		tv_costs_sum.setText(json.getString("costs_sum"));
 	}
@@ -194,9 +194,9 @@ public class DashboardActivity extends Activity {
 		TextView myLocationText;
 		myLocationText = (TextView) this.findViewById(R.id.tv_plus);
 		if (location != null) {
-			Settings.lat = location.getLatitude();
-			Settings.lng = location.getLongitude();
-			latLongString = "维度:" + Settings.lat + "\n经度:" + Settings.lng;
+			Settings.getFactory().lat = location.getLatitude();
+			Settings.getFactory().lng = location.getLongitude();
+			latLongString = "维度:" + Settings.getFactory().lat + "\n经度:" + Settings.getFactory().lng;
 		} else {
 			latLongString = "无法获取地理信息";
 			// getLocation();

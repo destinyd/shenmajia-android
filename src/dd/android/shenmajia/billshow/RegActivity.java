@@ -55,8 +55,8 @@ public class RegActivity extends Activity {
 		JSONObject json = V1.reg(email, password, password_confirm, username);
 		try {
 			if (json.containsKey("id")) {
-				Settings.username = json.getString("username");
-				Settings.email = json.getString("email");
+				Settings.getFactory().username = json.getString("username");
+				Settings.getFactory().email = json.getString("email");
 			} else {
 				ArrayList<String> errors = new ArrayList<String>();
 				Set<String> keys = json.keySet();

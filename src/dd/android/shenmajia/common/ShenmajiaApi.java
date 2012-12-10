@@ -30,8 +30,8 @@ public class ShenmajiaApi {
 		Log.d("result", result.toString());
 		// try {
 		if (result.containsKey("access_token")) {
-			Settings.access_token = result.getString("access_token");
-			Log.d("Settings.access_token", Settings.access_token);
+			Settings.getFactory().access_token = result.getString("access_token");
+			Log.d("Settings.getFactory().access_token", Settings.getFactory().access_token);
 			return true;
 		} else {
 			if (result.containsKey("error_description")) {
@@ -59,17 +59,18 @@ public class ShenmajiaApi {
 	}
 
 	public static Boolean get_me(Activity activity) {
-		if (Settings.access_token == null || Settings.access_token == "")
+		if (Settings.getFactory().access_token == null || Settings.getFactory().access_token == "")
 			return false;
-		JSONObject api_me_result = V1.me(Settings.access_token);
+		JSONObject api_me_result = V1.me(Settings.getFactory().access_token);
 		if (api_me_result == null)
 			return false;
 		// 发送请求
 		try {
 
-			Settings.username = api_me_result.getString("username");
-			Settings.id = api_me_result.getInteger("id");
-			PropertiesUtil.writeConfiguration(activity);
+			Settings.getFactory().username = api_me_result.getString("username");
+			Settings.getFactory().id = api_me_result.getInteger("id");
+//			PropertiesUtil.writeConfiguration(activity);
+			PropertiesUtil.writeConfiguration();
 			return true;
 			// Toast.makeText(activity, retSrc, Toast.LENGTH_LONG).show();
 		} catch (Exception e) {
@@ -91,7 +92,7 @@ public class ShenmajiaApi {
 	}
 
 	public static JSONObject get_dashboard() {
-		return V1.dashboard(Settings.access_token);
+		return V1.dashboard(Settings.getFactory().access_token);
 	}
 
 	public static String get_search_place(String q) {
@@ -99,8 +100,8 @@ public class ShenmajiaApi {
 	}
 
 	public static String get_search_place(String q, Integer page) {
-		return V1.search_place(Settings.access_token, q, Settings.lat,
-				Settings.lng, page);
+		return V1.search_place(Settings.getFactory().access_token, q, Settings.getFactory().lat,
+				Settings.getFactory().lng, page);
 	}
 
 //	public static String get_search_good(String q) {
@@ -108,7 +109,7 @@ public class ShenmajiaApi {
 //	}
 
 	public static String get_search_good(String q, Integer page) {
-		return V1.search_good(Settings.access_token, q, page);
+		return V1.search_good(Settings.getFactory().access_token, q, page);
 	}
 
 	// public static String get_near_places() {
@@ -116,33 +117,33 @@ public class ShenmajiaApi {
 	// }
 
 	public static String get_near_places(Integer page) {
-		return V1.search_place(Settings.access_token, "", Settings.lat,
-				Settings.lng, page);
+		return V1.search_place(Settings.getFactory().access_token, "", Settings.getFactory().lat,
+				Settings.getFactory().lng, page);
 	}
 
 	public static List<Cost> get_costs(Integer page) {
-		return V1.costs(Settings.access_token, page);
+		return V1.costs(Settings.getFactory().access_token, page);
 	}
 	
 	public static List<Good> get_place_goods(Integer place_id,Integer page) {
-		return V1.place_goods(Settings.access_token, place_id, page);
+		return V1.place_goods(Settings.getFactory().access_token, place_id, page);
 	}
 
 	public static Boolean create_cost(float money, String desc) {
-		JSONObject json = V1.create_cost(Settings.access_token, money, desc);
+		JSONObject json = V1.create_cost(Settings.getFactory().access_token, money, desc);
 		return true;
 	}
 
 	public static Boolean create_bill(Integer place_id, Double total,
 			Double cost, List<BillPrice> bill_prices) {
-		JSONObject json = V1.create_bill(Settings.access_token, place_id,
+		JSONObject json = V1.create_bill(Settings.getFactory().access_token, place_id,
 				total, cost, bill_prices);
 		return true;
 	}
 
 	public static Good create_good(String name, String unit, String taglist,
 			String norm, String barcode, String origin, String desc) {
-		return V1.create_good(Settings.access_token, name, unit, taglist, norm,
+		return V1.create_good(Settings.getFactory().access_token, name, unit, taglist, norm,
 				barcode, origin, desc);
 	}
 	public static void change_activity(Activity activity, Class<?> cls) {

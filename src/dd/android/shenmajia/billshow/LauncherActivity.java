@@ -1,7 +1,6 @@
 package dd.android.shenmajia.billshow;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
@@ -66,7 +65,8 @@ public class LauncherActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launcher);
-		PropertiesUtil.readConfiguration(this);
+//		PropertiesUtil.readConfiguration(this);
+		PropertiesUtil.readConfiguration();
 
 		new CheckVersionTask().run();
 	}

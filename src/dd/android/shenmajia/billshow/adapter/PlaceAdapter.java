@@ -67,7 +67,7 @@ public class PlaceAdapter extends BaseAdapter {
 		}
 		
 		viewHolder.tv_name.setText(place.name);
-		viewHolder.tv_distance.setText(place.getDistance(Settings.lat, Settings.lng));
+		viewHolder.tv_distance.setText(place.getDistance(Settings.getFactory().lat, Settings.getFactory().lng));
 		viewHolder.tv_address.setText(place.address);
 		
 		//对ListView中的每一行信息配置OnClick事件
