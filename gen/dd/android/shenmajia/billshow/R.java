@@ -140,12 +140,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int TextView03=0x7f05001e;
         public static final int both=0x7f050003;
         public static final int btn_add_bill_price=0x7f05000d;
-        public static final int btn_login=0x7f050026;
+        public static final int btn_login=0x7f050025;
         public static final int btn_near_places=0x7f050029;
         public static final int btn_new_good=0x7f050034;
         public static final int btn_place_goods=0x7f050033;
         public static final int btn_place_search=0x7f05002a;
-        public static final int btn_reg=0x7f050027;
+        public static final int btn_reg=0x7f050026;
         public static final int btn_search_good=0x7f050035;
         public static final int btn_submit=0x7f050019;
         public static final int btn_write_bill=0x7f050021;
@@ -158,12 +158,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int et_barcode=0x7f05003d;
         public static final int et_cost=0x7f050012;
         public static final int et_desc=0x7f050018;
-        public static final int et_email=0x7f050025;
+        public static final int et_email=0x7f050024;
         public static final int et_money=0x7f050017;
         public static final int et_name=0x7f050039;
         public static final int et_norm=0x7f05003c;
         public static final int et_origin=0x7f05003e;
-        public static final int et_password=0x7f050024;
+        public static final int et_password=0x7f050023;
         public static final int et_password_confirm=0x7f05002f;
         public static final int et_place_name=0x7f05002b;
         public static final int et_price=0x7f050041;
@@ -202,7 +202,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int submit=0x7f050013;
         public static final int tableRow2=0x7f05003f;
         public static final int tb_bottom=0x7f05000f;
-        public static final int textView1=0x7f050023;
+        public static final int textView1=0x7f050027;
         public static final int toppanel=0x7f05000c;
         public static final int tv_address=0x7f05004a;
         public static final int tv_bills_count=0x7f05001c;
@@ -306,6 +306,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int title_activity_reg=0x7f07000e;
         public static final int title_activity_search_good=0x7f070038;
         public static final int unit=0x7f07002a;
+        public static final int update_info_url=0x7f07003b;
         public static final int username=0x7f070010;
         public static final int write_bill=0x7f070015;
         public static final int write_cost=0x7f070016;

@@ -54,5 +54,6 @@
     <string name="title_activity_search_good">SearchGoodActivity</string>
     <string name="place">地点</string>
     <string name="new_good">新品</string>
+    <string name="update_info_url">http://shenmajia.tk/apk_info.json</string>
 
 </resources>
