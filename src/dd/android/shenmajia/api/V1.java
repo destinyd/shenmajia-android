@@ -41,7 +41,7 @@ public class V1 {
 	public static String costs_url = domain_url + "/api/v1/costs.json";
 	public static String bills_url = domain_url + "/api/v1/bills.json";
 	public static String goods_url = domain_url + "/api/v1/goods.json";
-	public static String format_costs = "?access_token=%s&page=%d";
+	public static String format_token_page = "?access_token=%s&page=%d";
 	public static String format_place_goods = "?access_token=%s&place_id=%d&page=%d";
 
 	static String format_bill_prices_key = "bill_prices[%d][%s]";
@@ -324,7 +324,7 @@ public class V1 {
 		HttpResponse httpResponse1;
 		String retSrc = "";
 
-		String url = costs_url + String.format(format_costs, access_token,page);
+		String url = costs_url + String.format(format_token_page, access_token,page);
 		HttpGet request = new HttpGet(url);
 		try {
 			httpResponse1 = new DefaultHttpClient().execute(request);
@@ -531,5 +531,36 @@ public class V1 {
 			e1.printStackTrace();
 		}
 		return JSON.parseObject(retSrc,Good.class);
+	}
+
+	public static List<Bill> bills(String access_token, int page) {
+		HttpResponse httpResponse1;
+		String retSrc = "";
+
+		String url = bills_url + String.format(format_token_page, access_token,page);
+		HttpGet request = new HttpGet(url);
+		try {
+			httpResponse1 = new DefaultHttpClient().execute(request);
+		} catch (ClientProtocolException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return null;
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return null;
+		}
+		try {
+			retSrc = EntityUtils.toString(httpResponse1.getEntity());
+			Log.d("r bills", retSrc);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		List<Bill> bills = JSON.parseArray(retSrc,Bill.class);
+		return bills;
 	}
 }

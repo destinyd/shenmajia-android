@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 
+import dd.android.shenmajia.api.Bill;
 import dd.android.shenmajia.api.BillPrice;
 import dd.android.shenmajia.api.Cost;
 import dd.android.shenmajia.api.Good;
@@ -171,5 +172,9 @@ public class ShenmajiaApi {
 				"", // title
 				message, // message
 				true);
+	}
+
+	public static List<Bill> get_bills(int page) {
+		return V1.bills(Settings.getFactory().access_token, page);
 	}
 }
