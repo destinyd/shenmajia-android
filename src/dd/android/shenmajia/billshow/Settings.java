@@ -12,6 +12,10 @@ public class Settings {
 	public int id = 0;
 	public double lat = 0, lng = 0;
 	
+	public static void setLoc(Location loc){
+		getFactory().setLocation(loc);
+	}
+	
 	public void setLocation(Location loc){
 		Log.d(TAG,loc.toString());
 		if(loc != null)
@@ -20,6 +24,7 @@ public class Settings {
 			lng = loc.getLongitude();
 			Log.d(TAG,String.valueOf(lat));
 			Log.d(TAG,String.valueOf(lng));
+			PropertiesUtil.writeConfiguration();
 		}
 	}
 
