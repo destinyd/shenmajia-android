@@ -97,8 +97,15 @@ public class PlacesActivity extends Activity {
 							// bind_places_view(data);
 							// places_adapter.notifyDataSetChanged();
 							Log.d("load_near_places", "load_near_places");
+							if(n_places != null){
 							places.addAll(n_places);
 							bind_places();
+							}
+							else{
+								Toast.makeText(PlacesActivity.this,
+										"获取地点信息失败。",
+										Toast.LENGTH_SHORT).show();								
+							}
 							dialog.dismiss();
 							dialog = null;
 						}
