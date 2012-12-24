@@ -151,7 +151,7 @@ public class BillFormActivity extends Activity {
 
 	private void show_search_good_dialog() {
 		Intent intent = new Intent();
-		intent.setClass(BillFormActivity.this, SearchGoodActivity.class);
+		intent.setClass(BillFormActivity.this, GoodSearchActivity.class);
 		intent.putExtra("place_id", place_id);
 		this.startActivity(intent);
 	}

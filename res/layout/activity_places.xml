@@ -34,6 +34,7 @@
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@id/btn_place_search"
             android:ems="10"
+            android:hint="@string/place_search_hint"
             android:inputType="textPostalAddress" >
 
             <requestFocus />

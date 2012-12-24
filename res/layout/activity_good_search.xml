@@ -43,6 +43,7 @@
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@id/btn_search_good"
             android:ems="10"
+            android:hint="@string/good_search_hint"
             android:inputType="textPostalAddress"
             android:minWidth="100dip" >
 

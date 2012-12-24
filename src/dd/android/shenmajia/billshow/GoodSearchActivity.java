@@ -7,6 +7,7 @@ import java.util.concurrent.Executors;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -29,7 +30,7 @@ import dd.android.shenmajia.api.Good;
 import dd.android.shenmajia.billshow.adapter.GoodAdapter;
 import dd.android.shenmajia.common.ShenmajiaApi;
 
-public class SearchGoodActivity extends Activity {
+public class GoodSearchActivity extends Activity {
 
 	Integer place_id;
 
@@ -46,11 +47,12 @@ public class SearchGoodActivity extends Activity {
 	private Handler mainHandler = new Handler();
 
 	// Thread
+	ProgressDialog dialog = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_search_good);
+		setContentView(R.layout.activity_good_search);
 
 		Intent mIntent = getIntent();
 		place_id = mIntent.getIntExtra("place_id", 0);
@@ -73,36 +75,41 @@ public class SearchGoodActivity extends Activity {
 	public void load_place_goods(View v) {
 		load_place_goods();
 	}
-	
+
 	public void load_place_goods() {
 		page = 1;
 		state = 0;
-		load_place_goods(page);		
+		load_place_goods(page);
 	}
 
 	public void load_place_goods(final Integer page) {
-		service.submit(new Runnable() {
-			@Override
-			public void run() {
-				n_goods = ShenmajiaApi.get_place_goods(place_id, page);
-				if (page == 1) {
-					goods.clear();
-				}
-				goods.addAll(n_goods);
-				mainHandler.post(new Runnable() {
-					@Override
-					public void run() {// 这将在主线程运行
-						if (good_adapter == null) {
-							good_adapter = new GoodAdapter(
-									SearchGoodActivity.this, goods);
-							lv_goods.setAdapter(good_adapter);
-						} else {
-							good_adapter.notifyDataSetChanged();
-						}
+		if (dialog == null) {
+			dialog = ShenmajiaApi.loading(this, "读取本地点商品...");
+			service.submit(new Runnable() {
+				@Override
+				public void run() {
+					n_goods = ShenmajiaApi.get_place_goods(place_id, page);
+					if (page == 1) {
+						goods.clear();
 					}
-				});
-			}
-		});
+					goods.addAll(n_goods);
+					mainHandler.post(new Runnable() {
+						@Override
+						public void run() {// 这将在主线程运行
+							if (good_adapter == null) {
+								good_adapter = new GoodAdapter(
+										GoodSearchActivity.this, goods);
+								lv_goods.setAdapter(good_adapter);
+							} else {
+								good_adapter.notifyDataSetChanged();
+							}
+							dialog.dismiss();
+							dialog = null;
+						}
+					});
+				}
+			});
+		}
 
 	}
 
@@ -116,6 +123,8 @@ public class SearchGoodActivity extends Activity {
 	void search_good(final Integer page) {
 		Log.d("search_good_q", q);
 		Log.d("search_good_page", page.toString());
+		if (dialog == null) {
+			dialog = ShenmajiaApi.loading(this, "搜索商品...");		
 		service.submit(new Runnable() {
 			@Override
 			public void run() {
@@ -130,15 +139,18 @@ public class SearchGoodActivity extends Activity {
 					public void run() {// 这将在主线程运行
 						if (good_adapter == null) {
 							good_adapter = new GoodAdapter(
-									SearchGoodActivity.this, goods);
+									GoodSearchActivity.this, goods);
 							lv_goods.setAdapter(good_adapter);
 						} else {
 							good_adapter.notifyDataSetChanged();
 						}
+						dialog.dismiss();
+						dialog = null;
 					}
 				});
 			}
 		});
+		}
 	}
 
 	public void new_good(View v) {
@@ -147,13 +159,13 @@ public class SearchGoodActivity extends Activity {
 
 	public void show_dialog_good_form() {
 		if (dialog_good_form != null) {
-			SearchGoodActivity.this.removeDialog(R.layout.dialog_good_form);
+			GoodSearchActivity.this.removeDialog(R.layout.dialog_good_form);
 			dialog_good_form = null;
 		}
 
 		LayoutInflater inflater = getLayoutInflater();
 		dialog_good_form = inflater.inflate(R.layout.dialog_good_form, null);
-		new AlertDialog.Builder(SearchGoodActivity.this).setTitle("新建商品")
+		new AlertDialog.Builder(GoodSearchActivity.this).setTitle("新建商品")
 				.setView(dialog_good_form)
 				.setPositiveButton("提交", new OnClickListener() {
 
@@ -221,11 +233,12 @@ public class SearchGoodActivity extends Activity {
 	}
 
 	public void onResume() {
-	    super.onResume();
-	    MobclickAgent.onResume(this);
+		super.onResume();
+		MobclickAgent.onResume(this);
 	}
+
 	public void onPause() {
-	    super.onPause();
-	    MobclickAgent.onPause(this);
+		super.onPause();
+		MobclickAgent.onPause(this);
 	}
 }

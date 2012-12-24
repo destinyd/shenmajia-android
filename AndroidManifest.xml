@@ -85,7 +85,7 @@
             android:label="@string/title_activity_map" >
         </activity>
         <activity
-            android:name="dd.android.shenmajia.billshow.SearchGoodActivity"
+            android:name="dd.android.shenmajia.billshow.GoodSearchActivity"
             android:label="@string/title_activity_search_good" >
         </activity>
         <!-- umeng -->
