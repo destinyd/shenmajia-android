@@ -96,7 +96,13 @@
         <activity
             android:name="com.umeng.fb.ui.FeedbackConversation"
             android:configChanges="keyboard" />
-        <!-- umeng end -->
+
+        <service
+            android:name="com.umeng.common.net.DownloadingService"
+            android:exported="true"
+            android:process=":DownloadingService" >
+        </service>
+
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="50d7e5a4527015388e000056" >
@@ -104,6 +110,8 @@
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="test" />
+
+        <!-- umeng end -->
     </application>
 
 </manifest>

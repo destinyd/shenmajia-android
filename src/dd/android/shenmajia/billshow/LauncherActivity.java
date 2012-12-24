@@ -27,6 +27,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.umeng.analytics.MobclickAgent;
+import com.umeng.update.UmengUpdateAgent;
 
 import dd.android.shenmajia.common.ShenmajiaApi;
 import dd.android.shenmajia.common.UpdataInfo;
@@ -68,10 +69,14 @@ public class LauncherActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launcher);
-//		PropertiesUtil.readConfiguration(this);
-		PropertiesUtil.readConfiguration();
+		// PropertiesUtil.readConfiguration(this);
+		if (Settings.factory == null) {
+			PropertiesUtil.readConfiguration();
+		}
 
-		new CheckVersionTask().run();
+//		new CheckVersionTask().run();
+		UmengUpdateAgent.update(this);
+		LoginMain();
 	}
 
 	/*
@@ -195,13 +200,14 @@ public class LauncherActivity extends Activity {
 			ShenmajiaApi.change_activity(this, LoginActivity.class);
 		}
 	}
-	
+
 	public void onResume() {
-	    super.onResume();
-	    MobclickAgent.onResume(this);
+		super.onResume();
+		MobclickAgent.onResume(this);
 	}
+
 	public void onPause() {
-	    super.onPause();
-	    MobclickAgent.onPause(this);
+		super.onPause();
+		MobclickAgent.onPause(this);
 	}
 }
