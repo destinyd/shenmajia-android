@@ -16,8 +16,6 @@ import dd.android.shenmajia.api.BillPrice;
 import dd.android.shenmajia.api.Cost;
 import dd.android.shenmajia.api.Good;
 import dd.android.shenmajia.api.V1;
-import dd.android.shenmajia.billshow.PropertiesUtil;
-import dd.android.shenmajia.billshow.Settings;
 
 public class ShenmajiaApi {
 	public static Boolean get_access_token(Activity activity, String username,

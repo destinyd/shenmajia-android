@@ -1,4 +1,4 @@
-package dd.android.shenmajia.billshow;
+package dd.android.shenmajia.common;
 
 import android.location.Location;
 import android.util.Log;
@@ -22,6 +22,8 @@ public class Settings {
 		{
 			lat = loc.getLatitude();
 			lng = loc.getLongitude();
+//			lat = loc.getLatitude() + 0.003079; // for baidu
+//			lng = loc.getLongitude() - 0.004747f;// for baidu
 			Log.d(TAG,String.valueOf(lat));
 			Log.d(TAG,String.valueOf(lng));
 			PropertiesUtil.writeConfiguration();

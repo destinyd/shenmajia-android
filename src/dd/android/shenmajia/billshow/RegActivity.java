@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.umeng.analytics.MobclickAgent;
 
 import dd.android.shenmajia.api.V1;
+import dd.android.shenmajia.common.Settings;
 import dd.android.shenmajia.common.ShenmajiaApi;
 
 public class RegActivity extends Activity {

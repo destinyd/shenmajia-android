@@ -10,7 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import dd.android.shenmajia.api.Place;
 import dd.android.shenmajia.billshow.R;
-import dd.android.shenmajia.billshow.Settings;
+import dd.android.shenmajia.common.Settings;
 
 public class PlaceAdapter extends BaseAdapter {
 	private List<Place> places;

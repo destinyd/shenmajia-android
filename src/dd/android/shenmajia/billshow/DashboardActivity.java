@@ -1,25 +1,10 @@
 package dd.android.shenmajia.billshow;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
@@ -27,9 +12,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.telephony.TelephonyManager;
-import android.telephony.gsm.GsmCellLocation;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -37,16 +19,16 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baidu.mapapi.BMapManager;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.NotificationType;
 import com.umeng.fb.UMFeedbackService;
 
+import dd.android.shenmajia.common.Settings;
 import dd.android.shenmajia.common.ShenmajiaApi;
-import dd.android.shenmajia.common.WiFiInfoManager;
-import dd.android.shenmajia.common.WiFiInfoManager.WifiInfo;
 
 public class DashboardActivity extends Activity {
-
+	com.baidu.mapapi.LocationListener mLocationListener = null;// create时注册此listener，Destroy时需要Remove
 	static DashboardActivity _factory = null;
 
 	ProgressDialog dialog = null;
@@ -69,11 +51,33 @@ public class DashboardActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dashboard);
-		UMFeedbackService.enableNewReplyNotification(this, NotificationType.AlertDialog);
+		UMFeedbackService.enableNewReplyNotification(this,
+				NotificationType.AlertDialog);
 		_factory = this;
-		init_location();
+//		init_location();
+		location_with_bd();
 		init();
 		dialog = ShenmajiaApi.loading(DashboardActivity.this);
+
+	}
+
+	public void location_with_bd() {
+		BillShowApp app = (BillShowApp) this.getApplication();
+		if (app.mBMapMan == null) {
+			app.mBMapMan = new BMapManager(getApplication());
+			app.mBMapMan.init(app.mStrKey,
+					new BillShowApp.MyGeneralListener());
+		}
+		app.mBMapMan.start();
+
+		// 注册定位事件
+		mLocationListener = new com.baidu.mapapi.LocationListener() {
+
+			@Override
+			public void onLocationChanged(Location location) {
+				updateWithNewLocation(location);
+			}
+		};
 	}
 
 	public void init() {
@@ -123,7 +127,7 @@ public class DashboardActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// 如果不关闭当前的会出现好多个页面
-		return MenusController.mainOptionsItemSelected(this,item);
+		return MenusController.mainOptionsItemSelected(this, item);
 	}
 
 	public void to_bill_form(View v) {
@@ -174,7 +178,8 @@ public class DashboardActivity extends Activity {
 		// getLocation();
 		// }
 	}
-//
+
+	//
 	private final LocationListener locationListener = new LocationListener() {
 		public void onLocationChanged(Location location) {
 			updateWithNewLocation(location);
@@ -198,19 +203,30 @@ public class DashboardActivity extends Activity {
 		myLocationText = (TextView) this.findViewById(R.id.tv_plus);
 		if (location != null) {
 			Settings.setLoc(location);
-			latLongString = "维度:" + Settings.getFactory().lat + "\n经度:" + Settings.getFactory().lng;
+			latLongString = "维度:" + Settings.getFactory().lat + "\n经度:"
+					+ Settings.getFactory().lng;
 		} else {
 			latLongString = "无法获取地理信息";
 			// getLocation();
 		}
 		myLocationText.setText(latLongString);
 	}
+
 	public void onResume() {
-	    super.onResume();
-	    MobclickAgent.onResume(this);
+		BillShowApp app = (BillShowApp)this.getApplication();
+		// 注册Listener
+        app.mBMapMan.getLocationManager().requestLocationUpdates(mLocationListener);
+		app.mBMapMan.start();		
+		super.onResume();
+		MobclickAgent.onResume(this);
 	}
+
 	public void onPause() {
-	    super.onPause();
-	    MobclickAgent.onPause(this);
+		BillShowApp app = (BillShowApp) this.getApplication();
+		// 移除listener
+		app.mBMapMan.getLocationManager().removeUpdates(mLocationListener);
+		app.mBMapMan.stop();
+		super.onPause();
+		MobclickAgent.onPause(this);
 	}
 }

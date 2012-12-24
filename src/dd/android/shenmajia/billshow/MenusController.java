@@ -5,6 +5,8 @@ import android.view.MenuItem;
 
 import com.umeng.fb.UMFeedbackService;
 
+import dd.android.shenmajia.common.PropertiesUtil;
+import dd.android.shenmajia.common.Settings;
 import dd.android.shenmajia.common.ShenmajiaApi;
 
 public class MenusController {

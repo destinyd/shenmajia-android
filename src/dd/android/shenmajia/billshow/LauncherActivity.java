@@ -29,6 +29,8 @@ import android.widget.Toast;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 
+import dd.android.shenmajia.common.PropertiesUtil;
+import dd.android.shenmajia.common.Settings;
 import dd.android.shenmajia.common.ShenmajiaApi;
 import dd.android.shenmajia.common.UpdataInfo;
 

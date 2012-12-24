@@ -34,6 +34,7 @@ import com.umeng.analytics.MobclickAgent;
 
 import dd.android.shenmajia.api.Place;
 import dd.android.shenmajia.billshow.adapter.PlaceAdapter;
+import dd.android.shenmajia.common.Settings;
 import dd.android.shenmajia.common.ShenmajiaApi;
 
 public class PlacesActivity extends Activity {

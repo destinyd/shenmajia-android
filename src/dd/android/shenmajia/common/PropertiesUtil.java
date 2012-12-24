@@ -1,4 +1,4 @@
-package dd.android.shenmajia.billshow;
+package dd.android.shenmajia.common;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
+
 
 public class PropertiesUtil {
 	static final String TAG = "PropertiesUtil";
