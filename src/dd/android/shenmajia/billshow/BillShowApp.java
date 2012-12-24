@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.baidu.mapapi.BMapManager;
 import com.baidu.mapapi.MKEvent;
 import com.baidu.mapapi.MKGeneralListener;
+import com.baidu.mapapi.MKLocationManager;
 
 public class BillShowApp extends Application {
 
@@ -17,6 +18,7 @@ public class BillShowApp extends Application {
 
 	// 百度MapAPI的管理类
 	public BMapManager mBMapMan = null;
+	MKLocationManager mLocationManager = null; 
 
 	// 授权Key
 	// 申请地址：http://developer.baidu.com/map/android-mobile-apply-key.htm
@@ -68,7 +70,10 @@ public class BillShowApp extends Application {
 				.init(this.mStrKey, new MyGeneralListener());
 		// 初始化地图sdk成功，设置定位监听时间
 		if (isSuccess) {
-			mBMapMan.getLocationManager().setNotifyInternal(10, 5);
+			mLocationManager = mBMapMan.getLocationManager();
+			mLocationManager.enableProvider((int) MKLocationManager.MK_GPS_PROVIDER);
+			mLocationManager.setNotifyInternal(10, 5);
+//			mBMapMan.getLocationManager().setNotifyInternal(10, 5);
 		} else {
 			// 地图sdk初始化失败，不能使用sdk
 		}
