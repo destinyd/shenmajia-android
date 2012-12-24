@@ -1,5 +1,9 @@
 package dd.android.shenmajia.billshow;
 
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.fb.NotificationType;
+import com.umeng.fb.UMFeedbackService;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +22,7 @@ public class LoginActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		UMFeedbackService.enableNewReplyNotification(this, NotificationType.AlertDialog);
 	}
 
 	@Override
@@ -58,5 +63,12 @@ public class LoginActivity extends Activity {
 		// 如果不关闭当前的会出现好多个页面
 		this.finish();
 	}
-
+	public void onResume() {
+	    super.onResume();
+	    MobclickAgent.onResume(this);
+	}
+	public void onPause() {
+	    super.onPause();
+	    MobclickAgent.onPause(this);
+	}
 }

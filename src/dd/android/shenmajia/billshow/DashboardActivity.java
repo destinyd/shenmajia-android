@@ -37,6 +37,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.fb.NotificationType;
+import com.umeng.fb.UMFeedbackService;
 
 import dd.android.shenmajia.common.ShenmajiaApi;
 import dd.android.shenmajia.common.WiFiInfoManager;
@@ -66,7 +69,7 @@ public class DashboardActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dashboard);
-
+		UMFeedbackService.enableNewReplyNotification(this, NotificationType.AlertDialog);
 		_factory = this;
 		init_location();
 		init();
@@ -201,5 +204,13 @@ public class DashboardActivity extends Activity {
 			// getLocation();
 		}
 		myLocationText.setText(latLongString);
+	}
+	public void onResume() {
+	    super.onResume();
+	    MobclickAgent.onResume(this);
+	}
+	public void onPause() {
+	    super.onPause();
+	    MobclickAgent.onPause(this);
 	}
 }

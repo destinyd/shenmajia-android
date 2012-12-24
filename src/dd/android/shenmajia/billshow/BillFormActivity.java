@@ -3,6 +3,8 @@ package dd.android.shenmajia.billshow;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.umeng.analytics.MobclickAgent;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -225,5 +227,12 @@ public class BillFormActivity extends Activity {
 		// 如果不关闭当前的会出现好多个页面
 		return MenusController.mainOptionsItemSelected(this, item);
 	}
-
+	public void onResume() {
+	    super.onResume();
+	    MobclickAgent.onResume(this);
+	}
+	public void onPause() {
+	    super.onPause();
+	    MobclickAgent.onPause(this);
+	}
 }

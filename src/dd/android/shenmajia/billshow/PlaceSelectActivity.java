@@ -1,5 +1,7 @@
 package dd.android.shenmajia.billshow;
 
+import com.umeng.analytics.MobclickAgent;
+
 import android.app.Activity;
 import android.os.Bundle;
 
@@ -42,5 +44,12 @@ import android.os.Bundle;
 //		// TODO Auto-generated method stub
 //		return false;
 //	}
-
+	public void onResume() {
+	    super.onResume();
+	    MobclickAgent.onResume(this);
+	}
+	public void onPause() {
+	    super.onPause();
+	    MobclickAgent.onPause(this);
+	}
 }

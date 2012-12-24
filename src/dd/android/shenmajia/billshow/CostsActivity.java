@@ -20,6 +20,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.umeng.analytics.MobclickAgent;
 
 import dd.android.shenmajia.api.Cost;
 import dd.android.shenmajia.billshow.adapter.CostAdapter;
@@ -139,5 +140,12 @@ public class CostsActivity extends Activity {
 		}
 		lv_costs.onRefreshComplete();
 	}
-
+	public void onResume() {
+	    super.onResume();
+	    MobclickAgent.onResume(this);
+	}
+	public void onPause() {
+	    super.onPause();
+	    MobclickAgent.onPause(this);
+	}
 }

@@ -25,6 +25,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.umeng.analytics.MobclickAgent;
+
 import dd.android.shenmajia.common.ShenmajiaApi;
 import dd.android.shenmajia.common.UpdataInfo;
 
@@ -191,5 +194,14 @@ public class LauncherActivity extends Activity {
 		} else {
 			ShenmajiaApi.change_activity(this, LoginActivity.class);
 		}
+	}
+	
+	public void onResume() {
+	    super.onResume();
+	    MobclickAgent.onResume(this);
+	}
+	public void onPause() {
+	    super.onPause();
+	    MobclickAgent.onPause(this);
 	}
 }

@@ -30,6 +30,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.umeng.analytics.MobclickAgent;
 
 import dd.android.shenmajia.api.Place;
 import dd.android.shenmajia.billshow.adapter.PlaceAdapter;
@@ -301,5 +302,13 @@ public class PlacesActivity extends Activity {
 			Settings.getFactory().lat = location.getLatitude();
 			Settings.getFactory().lng = location.getLongitude();
 		}
+	}
+	public void onResume() {
+	    super.onResume();
+	    MobclickAgent.onResume(this);
+	}
+	public void onPause() {
+	    super.onPause();
+	    MobclickAgent.onPause(this);
 	}
 }
