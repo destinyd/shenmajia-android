@@ -76,10 +76,6 @@
             android:label="@string/title_activity_costs" >
         </activity>
 
-        <uses-library
-            android:name="com.google.android.maps"
-            android:required="true" />
-
         <activity
             android:name="dd.android.shenmajia.billshow.PlaceSelectActivity"
             android:label="@string/title_activity_map" >
